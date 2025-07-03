@@ -1,0 +1,25 @@
+relationship c346efec-bdea-48de-8f3c-9bfd6b7b8614
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Pace Segment'.stay_date
+	toColumn: LocalDateTable_aae780a9-1b7a-4167-a2f8-5b75e8795a5b.Date
+
+relationship 0ef54deb-fdf6-4f97-b50f-80282e9ec9ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Pace Segment'.stay_date_py
+	toColumn: LocalDateTable_bcc241d3-e29c-4c46-a019-8e4fd419726f.Date
+
+relationship f055537b-419d-4a63-8d35-6065366c6653
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Pace Segment'.snapshot_date
+	toColumn: LocalDateTable_2fd78ba3-0d43-4ae2-b928-89c35a486aec.Date
+
+relationship 71f24be5-111b-4688-a2ff-c0cfc6276c43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Pace Segment'.ingested_timestamp
+	toColumn: LocalDateTable_d63ba154-18c9-4c87-8ce9-6fab4227dbc3.Date
+
+relationship 74498bcb-73f8-4529-a200-16494e92cfd4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Pace Segment'.date_sent_to_big_query
+	toColumn: LocalDateTable_dbd13fd6-0cdd-4cdf-9841-9f31c3be3977.Date
+

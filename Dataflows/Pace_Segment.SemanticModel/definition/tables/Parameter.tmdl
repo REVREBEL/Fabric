@@ -1,0 +1,47 @@
+table Parameter
+	lineageTag: 668c75c2-b8b5-4e50-b9e3-231150468956
+
+	column Parameter
+		lineageTag: eb7746e6-b85f-401b-b9ee-f9a7432f1916
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: aaa8951f-5e6d-4871-8dc6-a0e2faff55f9
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 51ce7827-3ef6-400b-9d8d-5eed9cd8ab1c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("property_code", NAMEOF('Pace Segment'[property_code]), 0)
+				}
+
+	annotation PBI_Id = 0779c603506d4b2797080d82d96d4a73
+

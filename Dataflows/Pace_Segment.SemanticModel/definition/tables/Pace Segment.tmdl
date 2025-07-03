@@ -1,0 +1,671 @@
+table 'Pace Segment'
+	lineageTag: d8a3e66f-093c-4d09-b4a9-58f2ba8c501a
+
+	measure ADR = DIVIDE(SUM('Pace Segment'[REVENUE]), SUM('Pace Segment'[rms_cy]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: ADR
+		lineageTag: 62eb6275-5650-4bc7-a636-9782333f893d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'ADR Prior Year' = DIVIDE(SUM('Pace Segment'[rev_py]), SUM('Pace Segment'[rms_py]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: b6f9eaab-077f-4acd-9605-8c4167401e98
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'ADR STLY' = DIVIDE(SUM('Pace Segment'[rev_stly]), SUM('Pace Segment'[rms_stly]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: ADR
+		lineageTag: 200252d8-915b-4f24-b83e-b58ac1670469
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure OCCP = DIVIDE(SUM('Pace Segment'[rms_cy]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: OCCUPANCY
+		lineageTag: 510c3377-7628-458e-a680-ed9158dbae52
+
+	measure 'OCCP Prior Year' = DIVIDE(SUM('Pace Segment'[rms_py]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: OCCUPANCY
+		lineageTag: add1f791-ad93-4731-9591-346508e8dc04
+
+	measure 'OCCP STLY' = DIVIDE(SUM('Pace Segment'[rms_stly]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: OCCUPANCY
+		lineageTag: f04c5cf6-9903-4feb-8bd6-16f238c63f91
+
+	measure MIX = DIVIDE(SUM('Pace Segment'[rms_cy]),CALCULATE(SUM('Pace Segment'[rms_cy]), ALLSELECTED('Pace Segment')), 0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9f3269b2-a5fb-4365-b80b-edd59743dbe1
+
+	column property_code
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: c1e2c3d6-8e89-4c58-be02-912504626105
+		summarizeBy: none
+		sourceColumn: property_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column property_name
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 8b429402-5aff-4093-a826-01f422067a88
+		summarizeBy: none
+		sourceColumn: property_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column property_name_map
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 8cb30f16-2037-4fb1-9cbc-ea5324005a0a
+		summarizeBy: none
+		sourceColumn: property_name_map
+
+		annotation SummarizationSetBy = Automatic
+
+	column available_rms_map
+		dataType: int64
+		formatString: 0
+		lineageTag: d5581ba6-1484-4eee-885b-00b9ceab4c95
+		summarizeBy: sum
+		sourceColumn: available_rms_map
+
+		annotation SummarizationSetBy = Automatic
+
+	column hotel_shortname_map
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: f533aa31-637c-44af-a713-89cdfd353eb0
+		summarizeBy: none
+		sourceColumn: hotel_shortname_map
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 53eb2b8d-edf9-4038-8844-667d7582325e
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column dow
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: f9b110c9-1f0d-40b4-8a4d-e74eee8167b8
+		summarizeBy: none
+		sourceColumn: dow
+
+		annotation SummarizationSetBy = Automatic
+
+	column stay_date
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: DIMENSIONS
+		lineageTag: 6a174a27-18b2-49a0-b1e2-e7fd536e2d6e
+		summarizeBy: none
+		sourceColumn: stay_date
+
+		variation Variation
+			isDefault
+			relationship: c346efec-bdea-48de-8f3c-9bfd6b7b8614
+			defaultHierarchy: LocalDateTable_aae780a9-1b7a-4167-a2f8-5b75e8795a5b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column stay_date_py
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: DIMENSIONS
+		lineageTag: cbe0e08c-b2f6-46b3-8d0c-23f9cebb32e9
+		summarizeBy: none
+		sourceColumn: stay_date_py
+
+		variation Variation
+			isDefault
+			relationship: 0ef54deb-fdf6-4f97-b50f-80282e9ec9ed
+			defaultHierarchy: LocalDateTable_bcc241d3-e29c-4c46-a019-8e4fd419726f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column rms_fct_py
+		dataType: int64
+		formatString: 0
+		displayFolder: FORECAST
+		lineageTag: 0ed6f09d-e214-4db0-aae7-bbf472fe9da2
+		summarizeBy: sum
+		sourceColumn: rms_fct_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column rms_fct_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: FORECAST
+		lineageTag: 15fcab4e-7de4-4077-9fd6-b12094a694e1
+		summarizeBy: sum
+		sourceColumn: rms_fct_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column adr_fct_py
+		dataType: double
+		isHidden
+		displayFolder: FORECAST
+		lineageTag: be12a2be-cb6e-4cb4-b396-d4264b2ab20f
+		summarizeBy: sum
+		sourceColumn: adr_fct_py
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adr_fct_cy
+		dataType: double
+		isHidden
+		displayFolder: FORECAST
+		lineageTag: 53573433-a08a-4c2c-b241-38147c580870
+		summarizeBy: sum
+		sourceColumn: adr_fct_cy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rev_fct_cy
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: 37c3556e-e978-46ad-b46a-e4f3304e6fb0
+		summarizeBy: sum
+		sourceColumn: rev_fct_cy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rev_fct_py
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: 0e3a214f-c640-4767-925a-c747f4df294c
+		summarizeBy: sum
+		sourceColumn: rev_fct_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rms_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: ROOMS
+		lineageTag: 28afd258-5164-413b-a884-04b3dd6866a3
+		summarizeBy: sum
+		sourceColumn: rms_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column rms_py
+		dataType: int64
+		formatString: 0
+		displayFolder: ROOMS
+		lineageTag: a0755133-06a6-46d5-8903-98631eefea84
+		summarizeBy: sum
+		sourceColumn: rms_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column rms_stly
+		dataType: int64
+		formatString: 0
+		displayFolder: ROOMS
+		lineageTag: d0732ae5-fd34-4351-990b-610874820249
+		summarizeBy: sum
+		sourceColumn: rms_stly
+
+		annotation SummarizationSetBy = Automatic
+
+	column rms_st2y
+		dataType: int64
+		formatString: 0
+		displayFolder: ROOMS
+		lineageTag: ac8a4e3c-95fe-4507-924e-30a1d7b3ffa4
+		summarizeBy: sum
+		sourceColumn: rms_st2y
+
+		annotation SummarizationSetBy = Automatic
+
+	column rms_st19
+		dataType: int64
+		formatString: 0
+		displayFolder: ROOMS
+		lineageTag: 7a0c0e93-a8e1-484d-8171-26a8d6a3a00c
+		summarizeBy: sum
+		sourceColumn: rms_st19
+
+		annotation SummarizationSetBy = Automatic
+
+	column adr_py
+		dataType: double
+		isHidden
+		displayFolder: ADR
+		lineageTag: 43fe0ced-c4a2-4b87-8483-b224b3992e73
+		summarizeBy: sum
+		sourceColumn: adr_py
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adr_cy
+		dataType: double
+		isHidden
+		displayFolder: ADR
+		lineageTag: 61a4a54b-1027-4729-9f1b-57eff5ebcb20
+		summarizeBy: sum
+		sourceColumn: adr_cy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE
+		dataType: int64
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: REVENUE
+		lineageTag: 336969b0-b3be-4d5b-80f4-5fea873381ae
+		summarizeBy: sum
+		sourceColumn: REVENUE
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column rev_py
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: REVENUE
+		lineageTag: 27cab29e-d083-4364-8b37-b88e25e8bc33
+		summarizeBy: sum
+		sourceColumn: rev_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column rev_stly
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: REVENUE
+		lineageTag: 89f19928-3d60-4081-9237-27704ca5f1b9
+		summarizeBy: sum
+		sourceColumn: rev_stly
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column rev_st2y
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: REVENUE
+		lineageTag: acb002cd-3da2-4cec-9b4b-7a3339f2d349
+		summarizeBy: sum
+		sourceColumn: rev_st2y
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column rev_st19
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: REVENUE
+		lineageTag: c9eedf99-cc53-42a9-ac4d-7c75c58aaee4
+		summarizeBy: sum
+		sourceColumn: rev_st19
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column arrivals_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 95c7524e-3ab9-4f75-8edf-cf9956a1daa2
+		summarizeBy: sum
+		sourceColumn: arrivals_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrivals_py
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 6b7037c3-606c-4e82-864a-231038982341
+		summarizeBy: sum
+		sourceColumn: arrivals_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column departures_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: dd3132d7-7e2a-46e1-9468-40361dc32cbe
+		summarizeBy: sum
+		sourceColumn: departures_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column departures_py
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 5425a42c-fbad-429b-9b02-154d27be47db
+		summarizeBy: sum
+		sourceColumn: departures_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_show_py
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 8a6f1e1f-2235-42c0-9985-5b21e89580d5
+		summarizeBy: sum
+		sourceColumn: no_show_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_show_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: d8db9725-7ebb-4168-875d-9f922c0b2298
+		summarizeBy: sum
+		sourceColumn: no_show_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column cx_py
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 29358137-218a-4971-9760-43bcad361dbc
+		summarizeBy: sum
+		sourceColumn: cx_py
+
+		annotation SummarizationSetBy = Automatic
+
+	column cx_cy
+		dataType: int64
+		formatString: 0
+		displayFolder: RESERVATION METRICS
+		lineageTag: 902ec27a-500b-46b7-ac38-4e0cedd4cdee
+		summarizeBy: sum
+		sourceColumn: cx_cy
+
+		annotation SummarizationSetBy = Automatic
+
+	column property_fct_rms_cy
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: 731dbc1d-9326-4b0e-b23c-ca24ab5b32dc
+		summarizeBy: sum
+		sourceColumn: property_fct_rms_cy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column property_fct_rms_py
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: cc29ff9a-ae4c-4395-ae4c-485f4a7b8262
+		summarizeBy: sum
+		sourceColumn: property_fct_rms_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column property_fct_rev_cy
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: 6a11a1ba-759e-425d-9cdf-ad2b060bb6e8
+		summarizeBy: sum
+		sourceColumn: property_fct_rev_cy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column property_fct_rev_py
+		dataType: double
+		displayFolder: FORECAST
+		lineageTag: 6283f5aa-1fdb-4770-9636-fdf36c9c895b
+		summarizeBy: sum
+		sourceColumn: property_fct_rev_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bgt_rms_cy
+		dataType: double
+		displayFolder: BUDGET
+		lineageTag: 3b705c88-20c8-4f1b-ae57-9421bfdf871a
+		summarizeBy: sum
+		sourceColumn: bgt_rms_cy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bgt_rms_py
+		dataType: double
+		displayFolder: BUDGET
+		lineageTag: 68adc23a-55b6-487e-9feb-d29988b68c8a
+		summarizeBy: sum
+		sourceColumn: bgt_rms_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bgt_rev_cy
+		dataType: double
+		displayFolder: BUDGET
+		lineageTag: 16adf39d-fcc2-4812-98a5-c81d6da7cab6
+		summarizeBy: sum
+		sourceColumn: bgt_rev_cy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bgt_rev_py
+		dataType: double
+		displayFolder: BUDGET
+		lineageTag: d069abdb-9b1b-4881-ad14-9b55d06f5236
+		summarizeBy: sum
+		sourceColumn: bgt_rev_py
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column segment_code
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 44e3edee-a999-4861-afd3-771b965f1242
+		summarizeBy: none
+		sourceColumn: segment_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: d5559462-d8bf-4923-a749-21f12e98aa39
+		summarizeBy: sum
+		sourceColumn: segment_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_group
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 69b0edf6-364e-4f89-9823-52321bbde2e8
+		summarizeBy: none
+		sourceColumn: segment_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_group_code
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 439b4867-cc6d-444b-a000-568cf56de4f2
+		summarizeBy: none
+		sourceColumn: segment_group_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column finance_segment
+		dataType: string
+		displayFolder: DIMENSIONS
+		lineageTag: 5d5626a9-8ce1-4877-8258-4dfd3f778364
+		summarizeBy: none
+		sourceColumn: finance_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: DIMENSIONS
+		lineageTag: 621d547e-8b45-40f1-9695-53a2746d914e
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		variation Variation
+			isDefault
+			relationship: f055537b-419d-4a63-8d35-6065366c6653
+			defaultHierarchy: LocalDateTable_2fd78ba3-0d43-4ae2-b928-89c35a486aec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ingested_timestamp
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		displayFolder: DATABASE
+		lineageTag: 3eeb5210-7514-4a90-af65-3abed367ee9f
+		summarizeBy: none
+		sourceColumn: ingested_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 71f24be5-111b-4688-a2ff-c0cfc6276c43
+			defaultHierarchy: LocalDateTable_d63ba154-18c9-4c87-8ce9-6fab4227dbc3.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column sent_to_big_query
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: DATABASE
+		lineageTag: e9c0f9ea-019e-4b75-91fe-420a5c28bfb9
+		summarizeBy: none
+		sourceColumn: sent_to_big_query
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sent_to_big_query
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		displayFolder: DATABASE
+		lineageTag: 53e08389-a7d2-4993-a5dd-b1bd640d7492
+		summarizeBy: none
+		sourceColumn: date_sent_to_big_query
+
+		variation Variation
+			isDefault
+			relationship: 74498bcb-73f8-4529-a200-16494e92cfd4
+			defaultHierarchy: LocalDateTable_dbd13fd6-0cdd-4cdf-9841-9f31c3be3977.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RevPAR STLY' = DIVIDE(SUM('Pace Segment'[rev_stly]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: RevPAR
+		lineageTag: f262b12a-fc21-4a71-9c3c-217e5b2a3395
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'RevPAR Prior Year' = DIVIDE(SUM('Pace Segment'[rev_py]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: RevPAR
+		lineageTag: 82583fce-20d3-4400-8fc3-558bf88f9fde
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column RevPAR = DIVIDE(SUM('Pace Segment'[REVENUE]), SUM('Pace Segment'[available_rms_map]), 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: RevPAR
+		lineageTag: 67239d22-56c5-4e5a-aeca-8ad7b134be36
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Pace Segment' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"6fc7a30e-b793-4185-b9d5-2cbe481efae7" = Workspaces{[workspaceId="6fc7a30e-b793-4185-b9d5-2cbe481efae7"]}[Data],
+				    #"0d17ee22-1955-4970-881f-3966333fd4ba" = #"6fc7a30e-b793-4185-b9d5-2cbe481efae7"{[dataflowId="0d17ee22-1955-4970-881f-3966333fd4ba"]}[Data],
+				    Pace_Segment_ = #"0d17ee22-1955-4970-881f-3966333fd4ba"{[entity="Pace_Segment",version=""]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(Pace_Segment_,{{"rev_cy", "REVENUE"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

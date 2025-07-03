@@ -1,0 +1,7 @@
+role 'Property Viewer'
+	modelPermission: read
+
+	tablePermission 'Pace Segment' = [property_code] = "Value"
+
+	annotation PBI_Id = 07417fa57e0747f2a159c367a24ac1cb
+

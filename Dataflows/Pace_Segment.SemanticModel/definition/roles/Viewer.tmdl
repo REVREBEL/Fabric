@@ -1,0 +1,5 @@
+role Viewer
+	modelPermission: read
+
+	annotation PBI_Id = 3b9ddd0f78eb4a5e896a704ebeab9bb6
+

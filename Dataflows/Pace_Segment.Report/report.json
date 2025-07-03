@@ -1,0 +1,74 @@
+{
+  "config": "{\"version\":\"5.51\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.51\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "ReportSection",
+      "config": "{}",
+      "name": "35f59de0229e0147e715",
+      "parameters": "[{\"name\":\"fec8d70cd740eb904073\",\"boundFilter\":\"Filterdf15f683d60330651b13\",\"fieldExpr\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Month\"}},\"isLegacySingleSelection\":true}]",
+      "type": 1
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU02",
+            "path": "BaseThemes/CY24SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "resources/Datepicker_1687358625_OrgStore.pbiviz.json",
+            "path": "2/39578364-88ba-4434-869f-85ac8d8644db/ResourcePackage/BlobIdV2-aa14c898-2f8a-49fe-9b7d-4b91aa4758a1KiHo6hwkIs7aJW15ZarsodpBGw3FB4eE25so3okoZZ0=.json",
+            "type": 5
+          }
+        ],
+        "name": "Datepicker_1687358625_OrgStore",
+        "type": 3
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"Filterdf15f683d60330651b13\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Month\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"LocalDateTable_aae780a9-1b7a-4167-a2f8-5b75e8795a5b\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Month\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'March'\"}}]]}}}]},\"type\":\"Categorical\",\"cachedDisplayNames\":[{\"id\":{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"LocalDateTable_aae780a9-1b7a-4167-a2f8-5b75e8795a5b\"}},\"Property\":\"Month\"}},\"Right\":{\"Literal\":{\"Value\":\"'March'\"}}}}},\"displayName\":\"March\"}],\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"requireSingleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false,\"displayName\":\"MONTH\"}]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"08832420a8d28bc1bee9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1003.7473976405274,\"height\":435.2532963219986,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Pace_Segment.property_name\"},{\"queryRef\":\"Pace_Segment.stay_date.Variation.Date Hierarchy.Month\"},{\"queryRef\":\"Pace_Segment.segment\"},{\"queryRef\":\"Sum(Pace_Segment.rms_cy)\"},{\"queryRef\":\"Pace Segment.ADR\"},{\"queryRef\":\"Sum(Pace_Segment.rev_cy)\"},{\"queryRef\":\"Sum(Pace Segment.RevPAR)\"},{\"queryRef\":\"Sum(Pace_Segment.segment_sort)\"},{\"queryRef\":\"Pace Segment.MIX\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Pace Segment\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"property_name\"},\"Name\":\"Pace_Segment.property_name\",\"NativeReferenceName\":\"PROPERTY\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Month\"},\"Name\":\"Pace_Segment.stay_date.Variation.Date Hierarchy.Month\",\"NativeReferenceName\":\"stay_date Month\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"segment\"},\"Name\":\"Pace_Segment.segment\",\"NativeReferenceName\":\"SEGMENT\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"REVENUE\"}},\"Function\":0},\"Name\":\"Sum(Pace_Segment.rev_cy)\",\"NativeReferenceName\":\"REVENUE\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"segment_sort\"}},\"Function\":3},\"Name\":\"Sum(Pace_Segment.segment_sort)\",\"NativeReferenceName\":\"SORT\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"rms_cy\"}},\"Function\":0},\"Name\":\"Sum(Pace_Segment.rms_cy)\",\"NativeReferenceName\":\"ROOMS\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"RevPAR\"}},\"Function\":0},\"Name\":\"Sum(Pace Segment.RevPAR)\",\"NativeReferenceName\":\"REVPAR\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"ADR\"},\"Name\":\"Pace Segment.ADR\",\"NativeReferenceName\":\"ADR\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"MIX\"},\"Name\":\"Pace Segment.MIX\",\"NativeReferenceName\":\"MIX\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"segment_sort\"}},\"Function\":3}}}]},\"columnProperties\":{\"Pace_Segment.property_name\":{\"displayName\":\"PROPERTY\"},\"Pace_Segment.segment\":{\"displayName\":\"SEGMENT\"},\"Sum(Pace_Segment.rev_cy)\":{\"displayName\":\"REVENUE\"},\"Sum(Pace_Segment.segment_sort)\":{\"displayName\":\"SORT\"},\"Sum(Pace_Segment.rms_cy)\":{\"displayName\":\"ROOMS\"},\"Sum(Pace Segment.RevPAR)\":{\"displayName\":\"REVPAR\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"85.11172484311855D\"}}}},\"selector\":{\"metadata\":\"Pace_Segment.stay_date.Variation.Date Hierarchy.Month\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"191.25D\"}}}},\"selector\":{\"metadata\":\"Pace_Segment.property_name\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"188.85495237237743D\"}}}},\"selector\":{\"metadata\":\"Pace_Segment.segment\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"131.9556067948393D\"}}}},\"selector\":{\"metadata\":\"Sum(Pace_Segment.rev_cy)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"102.41361827186067D\"}}}},\"selector\":{\"metadata\":\"Sum(Pace_Segment.rms_cy)\"}}]}}}",
+          "filters": "[{\"name\":\"Filterce115037bbb8157d49d9\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Quarter\"}},\"type\":\"Categorical\",\"howCreated\":1,\"isHiddenInViewMode\":true,\"displayName\":\"QUARTER\"},{\"name\":\"Filterb79438a908d8ba050cc0\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Day\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":true,\"displayName\":\"DAY\"},{\"name\":\"Filter2a5e314ea11335e965ba\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Property\":\"rms_cy\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":true},{\"name\":\"Filter41d28f0083e6549c8d34\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Property\":\"REVENUE\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":true},{\"name\":\"4359e5e1871024ded6b0\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Name\":\"Variation\",\"Property\":\"stay_date\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Month\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":true,\"displayName\":\"MONTH\"},{\"name\":\"77dac9a70b030a5c43ad\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Property\":\"segment_sort\"}},\"Function\":3}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":true},{\"name\":\"bc952100a4b2c9a97867\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Pace Segment\"}},\"Property\":\"RevPAR\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"displayName\":\"REVPAR\"}]",
+          "height": 435.25,
+          "width": 1003.75,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6ee8da602768c5e55011\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1003.5294117647059,\"y\":0,\"z\":1000,\"width\":149.41176470588235,\"height\":701.1764705882354,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Parameter.Parameter\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Parameter\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Parameter\"},\"Name\":\"Parameter.Parameter\",\"NativeReferenceName\":\"Parameter\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Parameter\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Parameter Fields\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'''Pace Segment''[property_code]'\"}}]]}}}]}}}}]},\"cachedFilterDisplayItems\":[{\"id\":{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Parameter\"}},\"Property\":\"Parameter Fields\"}},\"Right\":{\"Literal\":{\"Value\":\"'''Pace Segment''[property_code]'\"}}}}},\"displayName\":\"property_code\"}]}}",
+          "filters": "[]",
+          "height": 701.18,
+          "width": 149.41,
+          "x": 1003.53,
+          "y": 0.00,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
