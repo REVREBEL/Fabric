@@ -1,0 +1,5762 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "revrebel_datafiles",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_other",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_other_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "lrv_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "lrv_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "lrv",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "lrv",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "wash_pct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "wash_pct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "wash_pct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "wash_pct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "special_event",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "special_event",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "special_event_py",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "special_event_py",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "demand",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "demand",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "demand_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "demand_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "unconstrained_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "unconstrained_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "unconstrained_demand_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "unconstrained_demand_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "constrained_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "constrained_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "constrained_demand_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "constrained_demand_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "projected_rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "projected_rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "bgt_rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "bgt_rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_grp",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand_grp",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_trn",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand_trn",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "REVREBEL Google Pace_Property",
+        "dependsOn": [
+          {
+            "activity": "Set Pace Property REVREBEL",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Script",
+        "typeProperties": {
+          "scripts": [
+            {
+              "text": {
+                "value": "UPDATE @{variables('TriggeredDataflow')}\nSET\n    sent_to_big_query = 1,\n    date_sent_to_big_query = SYSDATETIME()\nWHERE sent_to_big_query = 0;",
+                "type": "Expression"
+              },
+              "type": "NonQuery"
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        },
+        "linkedService": {
+          "name": "StagingWarehouseForDataflows_20250703032654",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+              "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "UpdateSentToBiqQuery Property",
+        "dependsOn": [
+          {
+            "activity": "REVREBEL Google Pace_Property",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "26dbf29c-5371-4c2e-98b8-9e2e65ce5977",
+          "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Pace_Segment_Dataflow",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "aparium-data-upload",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_grp_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_grp_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_trn_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_trn_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_other",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_other_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "lrv_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "lrv_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "lrv",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "lrv",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "wash_pct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "wash_pct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "wash_pct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "wash_pct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "special_event",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "special_event",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "special_event_py",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "special_event_py",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "demand",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "demand",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "demand_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "demand_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "unconstrained_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "unconstrained_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "unconstrained_demand_trn",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "unconstrained_demand_trn",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "constrained_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "constrained_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "constrained_demand_grp",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "constrained_demand_grp",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "projected_rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "projected_rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "bgt_rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "bgt_rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_grp",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand_grp",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_trn",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "sys_demand_trn",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_trn_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "sys_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "sys_demand_grp_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Aparium Google Pace_Property",
+        "dependsOn": [
+          {
+            "activity": "Set Pace Property Aparium",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "5397d0c0-0f42-425b-84d6-42288bcfd265",
+          "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Pace_RoomType_Dataflow",
+        "dependsOn": []
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "921d4396-0525-4265-93d2-f37a84d73845",
+          "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Pace_Property_Dataflow",
+        "dependsOn": []
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "Pace_Propety",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace Property Aparium",
+        "dependsOn": [
+          {
+            "activity": "Pace_Property_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "@activity('Pace_Property_Dataflow').name",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace Property REVREBEL",
+        "dependsOn": [
+          {
+            "activity": "Pace_Property_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "Pace_RoomType",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace_RoomType REVREBEL",
+        "dependsOn": [
+          {
+            "activity": "Pace_RoomType_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "Pace_RoomType",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace_RoomType Aparium",
+        "dependsOn": [
+          {
+            "activity": "Pace_RoomType_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "Pace_Segment",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace_Segment Aparium",
+        "dependsOn": [
+          {
+            "activity": "Pace_Segment_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "TriggeredDataflow",
+          "value": {
+            "value": "Pace_Segment",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set Pace Segment REVREBEL",
+        "dependsOn": [
+          {
+            "activity": "Pace_Segment_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "aparium-data-upload",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_roomtype",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "rms_roomtype",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rms_other",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rms_other_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar_py",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar_py",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_roomtype_class",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "rms_roomtype_class",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_class",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_class",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category_base",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category_base",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "roomtype_physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_sort",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "roomtype_sort",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Aparium Google Pace_RoomType",
+        "dependsOn": [
+          {
+            "activity": "Set Pace_RoomType Aparium",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "aparium-data-upload",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rms",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rms",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Aparium Google_Pace_Segment",
+        "dependsOn": [
+          {
+            "activity": "Set Pace_Segment Aparium",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "revrebel_datafiles",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rms",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rms_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "projected_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rms",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "REVREBEL Google Pace_Segment",
+        "dependsOn": [
+          {
+            "activity": "Set Pace Segment REVREBEL",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": {
+                  "value": "@variables('TriggeredDataflow')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DEVREBEL_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "597688fb-fd34-aff9-47eb-87c6f266312a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "revrebel_datafiles",
+                  "folderPath": {
+                    "value": "@variables('TriggeredDataflow')",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "@concat(variables('TriggeredDataflow'), formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_roomtype",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "rms_roomtype",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rms_other",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_other_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rms_other_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "adr_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "revpar_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "rms_ooo_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "remaining_capacity_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "overbooking_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "bar_py",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "bar_py",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "property_shortname",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_roomtype_class",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "rms_roomtype_class",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_class",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_class",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category_code",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category_base",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category_base",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_category",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "roomtype_category",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "roomtype_physical_capacity",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "roomtype_sort",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "roomtype_sort",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "Date",
+                  "physicalType": "DATE"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "boolean"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "REVREBEL Google Pace_RoomType",
+        "dependsOn": [
+          {
+            "activity": "Set Pace_RoomType REVREBEL",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Script",
+        "typeProperties": {
+          "scripts": [
+            {
+              "text": {
+                "value": "UPDATE @{variables('TriggeredDataflow')}\nSET\n    sent_to_big_query = 1,\n    date_sent_to_big_query = SYSDATETIME()\nWHERE sent_to_big_query = 0;",
+                "type": "Expression"
+              },
+              "type": "NonQuery"
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        },
+        "linkedService": {
+          "name": "StagingWarehouseForDataflows_20250703032654",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+              "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "UpdateSentToBiqQuery_RoomType",
+        "dependsOn": [
+          {
+            "activity": "REVREBEL Google Pace_RoomType",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Script",
+        "typeProperties": {
+          "scripts": [
+            {
+              "text": {
+                "value": "UPDATE @{variables('TriggeredDataflow')}\nSET\n    sent_to_big_query = 1,\n    date_sent_to_big_query = SYSDATETIME()\nWHERE sent_to_big_query = 0;",
+                "type": "Expression"
+              },
+              "type": "NonQuery"
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        },
+        "linkedService": {
+          "name": "StagingWarehouseForDataflows_20250703032654",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+              "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "UpdateSentToBiqQuery_Segment",
+        "dependsOn": [
+          {
+            "activity": "REVREBEL Google Pace_Segment",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "insert_timestamp": {
+        "type": "String"
+      },
+      "TriggeredDataflow": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "CoStar_DayStarG2",
+  "queryGroups": [
+    {
+      "id": "9476347b-3139-4f31-ac64-ed6c031a9392",
+      "name": "Functions",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "a5a59164-1e68-47b2-b344-745947af2f29",
+      "name": "Transform file from Query",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "f65ebf8c-ad2e-4358-b288-e7a7c47d2e79",
+      "name": "Helper queries",
+      "description": "",
+      "parentId": "a5a59164-1e68-47b2-b344-745947af2f29",
+      "order": 2
+    },
+    {
+      "id": "ddb3eec5-6b02-4f00-9566-c91b64513f80",
+      "name": "Maps",
+      "description": ""
+    },
+    {
+      "id": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "name": "Helper Queries",
+      "description": "",
+      "order": 1
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "CoStar_DayStar": {
+      "queryId": "6e9ec9f4-af70-46d4-ac1e-3d566bd5bd1a",
+      "queryName": "CoStar_DayStar",
+      "loadEnabled": false
+    },
+    "fxGetPropertyCode": {
+      "queryId": "e8c19d9b-1d6c-4a05-8385-29dae4dbf224",
+      "queryName": "fxGetPropertyCode",
+      "queryGroupId": "9476347b-3139-4f31-ac64-ed6c031a9392",
+      "loadEnabled": false
+    },
+    "fxGetCompsetValue": {
+      "queryId": "63b266c1-6205-4daa-a02b-b6db2bb837f8",
+      "queryName": "fxGetCompsetValue",
+      "queryGroupId": "9476347b-3139-4f31-ac64-ed6c031a9392",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "3f7c480f-3c4e-4285-b5a9-d14b385c9ec6",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "a5a59164-1e68-47b2-b344-745947af2f29",
+      "loadEnabled": false
+    },
+    "ColumnNames": {
+      "queryId": "17f56a55-e106-4165-adae-8fd1a45bcab4",
+      "queryName": "ColumnNames",
+      "queryGroupId": "a5a59164-1e68-47b2-b344-745947af2f29"
+    },
+    "Sample file": {
+      "queryId": "df74a40a-dab5-4400-809a-6858fc74730f",
+      "queryName": "Sample file",
+      "queryGroupId": "f65ebf8c-ad2e-4358-b288-e7a7c47d2e79",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "682f518e-109a-4550-a409-13b9f8053d8e",
+      "queryName": "Parameter",
+      "queryGroupId": "f65ebf8c-ad2e-4358-b288-e7a7c47d2e79",
+      "loadEnabled": false
+    },
+    "Transform file": {
+      "queryId": "4d1d5c06-33ec-44d0-bd21-d6b55a9a9be0",
+      "queryName": "Transform file",
+      "queryGroupId": "f65ebf8c-ad2e-4358-b288-e7a7c47d2e79",
+      "loadEnabled": false
+    },
+    "map_compset_gsheet": {
+      "queryId": "40d6aa81-50ee-4f5f-be6c-ebc73099e246",
+      "queryName": "map_compset_gsheet",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "SafeMapCompset": {
+      "queryId": "a77ac3e2-3fdf-4a01-be0f-839a351cc941",
+      "queryName": "SafeMapCompset",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "SafeMapCompsetSchemaFallback": {
+      "queryId": "ef7eacfc-7276-4e45-94a7-658d62b5a242",
+      "queryName": "SafeMapCompsetSchemaFallback",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "GetColumnNames": {
+      "queryId": "e1c46338-95f9-4d46-9cd0-f7d0256dc104",
+      "queryName": "GetColumnNames",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "GetColumnNames_Table": {
+      "queryId": "95896919-f7a4-40f0-a4e6-5d0b11a84de0",
+      "queryName": "GetColumnNames_Table",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "GetColumnTypes": {
+      "queryId": "ed4b1b25-7298-4265-9a62-cc73cba962fc",
+      "queryName": "GetColumnTypes",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "GetColumnTypes_Table": {
+      "queryId": "0ad06e39-2e20-4308-908c-5cbff0a6c4c0",
+      "queryName": "GetColumnTypes_Table",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "ReplaceColumnNames": {
+      "queryId": "b6522271-d278-49f7-a332-d7a3d33b334c",
+      "queryName": "ReplaceColumnNames",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "RenameColumnName_Table": {
+      "queryId": "ead727b9-0b76-4583-9e07-912361bc1ffc",
+      "queryName": "RenameColumnName_Table",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "GetColumnNullTypes_Table": {
+      "queryId": "147732d1-f4bb-4cf1-9f07-487c6449d4d5",
+      "queryName": "GetColumnNullTypes_Table",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "DuplicateRowCheck": {
+      "queryId": "aab91d1d-8fb5-41bd-b640-fbe96723e6d3",
+      "queryName": "DuplicateRowCheck",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "GetRawColumnNames_Table": {
+      "queryId": "112d96e6-44d6-4fb6-a725-bae1fe69a37f",
+      "queryName": "GetRawColumnNames_Table",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "TestFIle": {
+      "queryId": "f850ec31-9665-4867-94cd-6657bf0eb206",
+      "queryName": "TestFIle",
+      "queryGroupId": "4cc18395-607c-454d-ac8e-8b58a1b388ae",
+      "loadEnabled": false
+    },
+    "Sample file (2)": {
+      "queryId": "ac16b781-b0c6-4f3c-b97c-9d3ba897c102",
+      "queryName": "Sample file (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80",
+      "loadEnabled": false
+    },
+    "Transform file (2)": {
+      "queryId": "e47bd64d-a342-4f08-ad29-7014002dbcbc",
+      "queryName": "Transform file (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80",
+      "loadEnabled": false
+    },
+    "map_compset_gsheet (2)": {
+      "queryId": "796cb067-1755-4c33-ab59-b5651abdda4e",
+      "queryName": "map_compset_gsheet (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "SafeMapCompset (2)": {
+      "queryId": "a8c4c1d7-cf54-48bd-8d6e-99de3b589238",
+      "queryName": "SafeMapCompset (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "fxGetPropertyCode (2)": {
+      "queryId": "49984e06-1d28-4a5f-9c42-2747be72996b",
+      "queryName": "fxGetPropertyCode (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80",
+      "loadEnabled": false
+    },
+    "fxGetCompsetValue (2)": {
+      "queryId": "3a451dad-4c93-4a94-a394-f219c9860d8e",
+      "queryName": "fxGetCompsetValue (2)",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80",
+      "loadEnabled": false
+    },
+    "CoStarData_DayStar": {
+      "queryId": "967fd612-87a5-48e7-ad80-e4d0b272f305",
+      "queryName": "CoStarData_DayStar",
+      "queryGroupId": "ddb3eec5-6b02-4f00-9566-c91b64513f80"
+    },
+    "CoStar_DayStar_DataDestination": {
+      "queryId": "60715c96-081b-4540-b995-5d219b2fc63d",
+      "queryName": "CoStar_DayStar_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/costar",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"250ec87e-3657-4d28-9c42-12e87c54496b\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1-qF0HFiK0wOt_YJzvUYQfOJIkmI2YU8fqJasl1JajMo/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"5d19580d-a227-4f0d-b4d5-1bb9e6223bc5\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
+    }
+  ],
+  "fastCombine": true
+}

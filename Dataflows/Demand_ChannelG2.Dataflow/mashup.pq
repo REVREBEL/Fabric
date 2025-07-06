@@ -57,6 +57,7 @@ shared #"Transform file" = (Parameter as binary) => let
   #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"month", type text}, {"channel", type text}, {"stay_date", type date}, {"occ_total", Percentage.Type}, {"cs_occ_total", Percentage.Type}, {"occ_index_total", Int64.Type}, {"occ_rank_total", type text}, {"occ_index_var_py_total", Int64.Type}, {"occ_index_chg_pw_total", Int64.Type}, {"rms_sold_total", Int64.Type}, {"rms_sold_pct_var_py_total", Percentage.Type}, {"cs_rms_sold_pct_var_py_total", Percentage.Type}, {"rms_sold_chg_pw_total", Int64.Type}, {"rms_sold_pct_chg_pw_total", Percentage.Type}, {"cs_rms_sold_pct_chg_pw_total", Percentage.Type}, {"adr_total", Currency.Type}, {"adr_rank_total", type text}, {"revpar_total", Currency.Type}, {"revpar_rank_total", type text}, {"occ", Percentage.Type}, {"cs_occ", Percentage.Type}, {"occ_index", Int64.Type}, {"occ_rank", type text}, {"occ_index_var_py", Int64.Type}, {"occ_index_chg_pw", Int64.Type}, {"rms_sold", Int64.Type}, {"rms_sold_pct_var_py", Percentage.Type}, {"cs_rms_sold_pct_var_py", Percentage.Type}, {"rms_sold_chg_pw", Int64.Type}, {"rms_sold_pct_chg_pw", Percentage.Type}, {"cs_rms_sold_pct_chg_pw", Percentage.Type}, {"adr", Currency.Type}, {"adr_rank", type text}, {"revpar", Currency.Type}, {"revpar_rank", type text}})
 in
   #"Changed column type";
+[DataDestinations = {[Definition = [Kind = "Reference", QueryName = "Demand_Channel_DataDestination", IsNewTarget = true], Settings = [Kind = "Automatic", TypeSettings = [Kind = "Table"]]]}]
 shared Demand_Channel = let
     //-- ✅ Get column names from sample file
     ColumnNames = Table.ColumnNames(#"Transform file"(#"Sample file")),
@@ -242,7 +243,7 @@ shared Demand_Channel = let
         "rms", "rms_pct_var_py", "cs_rms_pct_var_py", 
         "rms_chg_pw", "rms_pct_chg_pw", "cs_rms_pct_chg_pw", 
         "adr", "adr_rank", "revpar", "revpar_rank", 
-        "month_year", "cy", "weekday", "dow", 
+        "cy", "month_year", "month", "weekday", "dow", 
         "channel_group_code",  "source_group_code", "source_group",  "source_code", "channel_sort",
         "property_shortname",  "cs_set_id", "physical_capacity", "cs_physical_capacity", 
         "cs_demand_id", "snapshot_date", "ingested_timestamp", "sent_to_big_query", "date_sent_to_big_query"
@@ -674,3 +675,10 @@ shared SafeMapDemandChannelSchemaFallback = let
   })
 in
   ReplaceErrors;
+shared Demand_Channel_DataDestination = let
+  Pattern = Lakehouse.Contents([CreateNavigationProperties = false, EnableFolding = false]),
+  Navigation_1 = Pattern{[workspaceId = "6fc7a30e-b793-4185-b9d5-2cbe481efae7"]}[Data],
+  Navigation_2 = Navigation_1{[lakehouseId = "f266312a-87c6-47eb-aff9-fd34597688fb"]}[Data],
+  TableNavigation = Navigation_2{[Id = "Demand_Channel", ItemKind = "Table"]}?[Data]?
+in
+  TableNavigation;

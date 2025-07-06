@@ -23,12 +23,6 @@
       "order": 1
     },
     {
-      "id": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "name": "SafeTypeDebug",
-      "description": "",
-      "order": 1
-    },
-    {
       "id": "41f3b3d8-f389-46e0-b8e8-6951dc103823",
       "name": "Utilities",
       "description": "Utilities Query",
@@ -40,8 +34,7 @@
     "Transform Sample file": {
       "queryId": "24e85c48-5653-4bac-b6cd-9396094ec994",
       "queryName": "Transform Sample file",
-      "queryGroupId": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33",
-      "loadEnabled": false
+      "queryGroupId": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33"
     },
     "ColumnNames": {
       "queryId": "2ed33124-97c4-4ff1-87da-e0e5be46e435",
@@ -61,7 +54,7 @@
       "loadEnabled": false
     },
     "Transform file": {
-      "queryId": "c597b972-4770-489f-9377-debbcab0345c",
+      "queryId": "54c7fd08-2d14-4dc3-b81a-2baff695b111",
       "queryName": "Transform file",
       "queryGroupId": "c2ff1b23-75a9-4b25-86d5-e20df98d95fc",
       "loadEnabled": false
@@ -96,54 +89,6 @@
       "queryName": "SafeMapRoomTypeSchemaFallback",
       "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
     },
-    "SafeTypeChecker": {
-      "queryId": "08dda373-b59d-4180-b683-c140e814e57f",
-      "queryName": "SafeTypeChecker",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "SafeTypeErrorLogBuilder": {
-      "queryId": "ece3605b-35f5-4849-9e3e-ea815ec441aa",
-      "queryName": "SafeTypeErrorLogBuilder",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "fnGenerateErrorLog": {
-      "queryId": "b87ba94a-c4c3-4807-9fa1-6a7022fe5f39",
-      "queryName": "fnGenerateErrorLog",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "fnCleanValidRows": {
-      "queryId": "b1acfb9a-9fc9-48e5-a906-79c3d4c9f67c",
-      "queryName": "fnCleanValidRows",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "SafeTypeFabricLogBuilder": {
-      "queryId": "a137aef5-3b45-4bc3-bcf6-2704ba5f50d6",
-      "queryName": "SafeTypeFabricLogBuilder",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "ErrorLog": {
-      "queryId": "1bacc232-40c1-437d-a23d-6f3aff918d6b",
-      "queryName": "ErrorLog",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "ValidationConfig": {
-      "queryId": "75b06fb5-ac48-4a46-a154-b05e3ca8a943",
-      "queryName": "ValidationConfig",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
-    "fnExportToFabricLakehouse": {
-      "queryId": "d2e97349-fed7-4ba8-a225-8d29d9509ef1",
-      "queryName": "fnExportToFabricLakehouse",
-      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
-      "loadEnabled": false
-    },
     "GetColumnTypes": {
       "queryId": "381cc8e9-0783-4799-bda1-0f3b7f458815",
       "queryName": "GetColumnTypes",
@@ -153,6 +98,12 @@
     "Pace_RoomType": {
       "queryId": "2eb3b67c-2c6f-42e1-bc01-50e3155eafe0",
       "queryName": "Pace_RoomType"
+    },
+    "Pace_RoomType_DataDestination": {
+      "queryId": "b7ee1a57-eef6-499a-846c-cc59d9e09ca5",
+      "queryName": "Pace_RoomType_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
     }
   },
   "connections": [
@@ -180,6 +131,11 @@
       "path": "https://revrebelhub.sharepoint.com/sites/rate",
       "kind": "SharePoint",
       "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0e86c6ae-08e0-4aa0-8f61-d110d1d3be5b\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
     }
   ],
   "fastCombine": true

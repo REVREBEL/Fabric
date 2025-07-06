@@ -1,0 +1,122 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Pace_PropertyG2",
+  "queryGroups": [
+    {
+      "id": "c387d30f-89b4-411c-a52d-0b6d15b85e40",
+      "name": "Transform file from Query",
+      "description": ""
+    },
+    {
+      "id": "76bb5cba-367a-462a-bed1-3498c970c43d",
+      "name": "Helper queries",
+      "description": "",
+      "parentId": "c387d30f-89b4-411c-a52d-0b6d15b85e40",
+      "order": 2
+    },
+    {
+      "id": "6da06819-843b-49fd-a3b8-467d2b49d827",
+      "name": "Maps",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "39a9acd7-7823-4c6e-99f5-9d34ff297a1b",
+      "name": "Transform file",
+      "parentId": "c387d30f-89b4-411c-a52d-0b6d15b85e40",
+      "order": 1
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Pace_Property": {
+      "queryId": "d0bbe3b1-d265-45cf-9e3a-937c33d6f2b6",
+      "queryName": "Pace_Property",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "8c5b8f43-3513-4528-9e78-bfdc138e6f92",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "c387d30f-89b4-411c-a52d-0b6d15b85e40",
+      "loadEnabled": false
+    },
+    "Sample file": {
+      "queryId": "55015415-892a-43b3-bb84-fcf6342f285d",
+      "queryName": "Sample file",
+      "queryGroupId": "76bb5cba-367a-462a-bed1-3498c970c43d",
+      "loadEnabled": false
+    },
+    "Transform file": {
+      "queryId": "3bb2be4f-ea5e-4cb4-865f-3c4b82d32990",
+      "queryName": "Transform file",
+      "queryGroupId": "76bb5cba-367a-462a-bed1-3498c970c43d",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "e03d6dab-e7fc-4f95-b19f-7178233a938a",
+      "queryName": "Parameter",
+      "queryGroupId": "76bb5cba-367a-462a-bed1-3498c970c43d",
+      "loadEnabled": false
+    },
+    "map_property_gsheet": {
+      "queryId": "113873b8-244b-4f4e-abc8-2f15ed471f12",
+      "queryName": "map_property_gsheet",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "SafeMapProperty": {
+      "queryId": "6fd3ad36-bacb-4074-8c5e-5de1fe610343",
+      "queryName": "SafeMapProperty",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "SafeMapPropertySchemaFallback": {
+      "queryId": "b1d267f5-d099-47a2-9315-a46921e6395b",
+      "queryName": "SafeMapPropertySchemaFallback",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "map_segment_gsheet": {
+      "queryId": "c824b4ee-de79-4b12-809c-8a8b6d029327",
+      "queryName": "map_segment_gsheet",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "SafeMapSegment": {
+      "queryId": "78601908-74af-4b66-b9b7-d1a816fc98b2",
+      "queryName": "SafeMapSegment",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "SafeMapSegmentSchemaFallback": {
+      "queryId": "68813263-c994-49bd-9490-bb04097fc31b",
+      "queryName": "SafeMapSegmentSchemaFallback",
+      "queryGroupId": "6da06819-843b-49fd-a3b8-467d2b49d827"
+    },
+    "Pace_Property_DataDestination": {
+      "queryId": "1fa05705-732f-4812-bd7e-3b3acc03f70a",
+      "queryName": "Pace_Property_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/rate",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0e86c6ae-08e0-4aa0-8f61-d110d1d3be5b\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/pace",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"d3b84e8d-fb83-428b-bb6b-d21731b426cd\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
+    }
+  ],
+  "fastCombine": true
+}

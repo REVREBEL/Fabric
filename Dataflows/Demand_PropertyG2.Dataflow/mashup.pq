@@ -1,6 +1,7 @@
 [StagingDefinition = [Kind = "FastCopy"]]
 section Section1;
-shared DemandData_Property = let
+[DataDestinations = {[Definition = [Kind = "Reference", QueryName = "Demand_Property_DataDestination", IsNewTarget = true], Settings = [Kind = "Automatic", TypeSettings = [Kind = "Table"]]]}]
+shared Demand_Property = let
     //-- ✅ Get column names from sample file
     ColumnNames = Table.ColumnNames(#"Transform file"(#"Sample file")),
     //
@@ -155,13 +156,15 @@ shared DemandData_Property = let
     // ✅ Add Property Data to Table from map_property Google Sheet
     WithIngestedTimestamp = Table.AddColumn(FinalOutputMergedPropertyData, "ingested_timestamp", each DateTime.LocalNow(), type datetime),
     ColumnOrder = {
-        "property_code", "property_name", "property_shortname", "cs_set_id", "physical_capacity", "cs_physical_capacity", 
-        "stay_date", "month", "month_year", "cy", "weekday", "dow", 
+        "property_code", "property_name", 
+        "stay_date", "segment",
         "occ", "occ_chg_pw", "occ_var_py",  
         "cs_occ", "cs_occ_chg_pw", "cs_occ_var_py",  
         "occ_index", "occ_index_chg_pw", "occ_index_var_py", "occ_rank",
         "adr", "adr_var_py", "cs_adr", "cs_adr_var_py", 
         "adr_rank", "adr_rank_py", "revpar_rank", "revpar_rank_py", 
+         "cy", "month_year", "month", "weekday", "dow", 
+        "property_shortname", "cs_set_id", "physical_capacity", "cs_physical_capacity", 
         "cs_demand_id", "snapshot_date", "ingested_timestamp", "sent_to_big_query", "date_sent_to_big_query"
     },
     AvailableColumns = Table.ColumnNames(WithIngestedTimestamp),
@@ -174,7 +177,7 @@ shared #"Sample file" = let
   // -- ✅ Step 1: Load files from SharePoint & Filter Relevant Files
   Source = SharePoint.Files("https://revrebelhub.sharepoint.com/sites/demand", [ApiVersion = 15]),
   FilteredFiles = Table.SelectRows(Source, each 
-        Text.Contains(Text.Lower([Folder Path]), "/_database/_schema_templates/", Comparer.OrdinalIgnoreCase)  and 
+        Text.Contains(Text.Lower([Folder Path]), "/_schema_templates/", Comparer.OrdinalIgnoreCase)  and 
         [Extension] = ".csv" and 
         ([Attributes]?[Hidden]? <> true)
     ),
@@ -664,7 +667,7 @@ in
   ReplaceErrors;
 shared DemandData_Property_Debug = let
     GetTables = Table.Combine({
-      DemandData_Property
+      Demand_Property
     }),
 
     ColumnOrder = {
@@ -698,3 +701,10 @@ shared DemandData_Property_Debug = let
 
 in
     FinalOutput;
+shared Demand_Property_DataDestination = let
+  Pattern = Lakehouse.Contents([CreateNavigationProperties = false, EnableFolding = false]),
+  Navigation_1 = Pattern{[workspaceId = "6fc7a30e-b793-4185-b9d5-2cbe481efae7"]}[Data],
+  Navigation_2 = Navigation_1{[lakehouseId = "f266312a-87c6-47eb-aff9-fd34597688fb"]}[Data],
+  TableNavigation = Navigation_2{[Id = "Demand_Property", ItemKind = "Table"]}?[Data]?
+in
+  TableNavigation;

@@ -27,9 +27,9 @@
   ],
   "documentLocale": "en-US",
   "queriesMetadata": {
-    "DemandData_Property": {
+    "Demand_Property": {
       "queryId": "9f5e7cab-09a9-4af1-9d74-5c9c48f4e9ff",
-      "queryName": "DemandData_Property"
+      "queryName": "Demand_Property"
     },
     "Sample file": {
       "queryId": "ede5037e-9308-4f73-ac20-47dca24f14d7",
@@ -138,6 +138,13 @@
     "DemandData_Property_Debug": {
       "queryId": "3c55e412-6d17-40c1-8a4f-d0225ceeac6e",
       "queryName": "DemandData_Property_Debug",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "Demand_Property_DataDestination": {
+      "queryId": "2eb80e60-45df-43bf-8835-ae9918156565",
+      "queryName": "Demand_Property_DataDestination",
+      "isHidden": true,
       "loadEnabled": false
     }
   },
@@ -151,6 +158,11 @@
       "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
       "kind": "Web",
       "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
     }
   ],
   "fastCombine": true

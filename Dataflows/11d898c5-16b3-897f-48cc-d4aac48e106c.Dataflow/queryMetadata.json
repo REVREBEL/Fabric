@@ -1,0 +1,54 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Dataflow 2",
+  "queryGroups": [
+    {
+      "id": "c004cdae-c68f-4803-a64a-b1ce288a1bdc",
+      "name": "Transform file from Query"
+    },
+    {
+      "id": "2084a519-3f0f-46fb-ab48-30441afe9194",
+      "name": "Helper queries",
+      "parentId": "c004cdae-c68f-4803-a64a-b1ce288a1bdc"
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Query": {
+      "queryId": "227cb281-7015-4936-b379-10f6e25169eb",
+      "queryName": "Query"
+    },
+    "Sample file": {
+      "queryId": "f3d06f58-eb50-4790-a2c2-66e8fd189867",
+      "queryName": "Sample file",
+      "queryGroupId": "2084a519-3f0f-46fb-ab48-30441afe9194",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "bceeb6cd-e959-48a6-a724-9bc4941b1352",
+      "queryName": "Parameter",
+      "queryGroupId": "2084a519-3f0f-46fb-ab48-30441afe9194",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "5c1af922-6b0a-44bd-a6d3-c395e5272b61",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "c004cdae-c68f-4803-a64a-b1ce288a1bdc",
+      "loadEnabled": false
+    },
+    "Transform file": {
+      "queryId": "28d56d34-ed8f-4ea3-880f-539087316a87",
+      "queryName": "Transform file",
+      "queryGroupId": "2084a519-3f0f-46fb-ab48-30441afe9194",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/costar",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"250ec87e-3657-4d28-9c42-12e87c54496b\"}"
+    }
+  ]
+}

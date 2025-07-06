@@ -1,0 +1,54 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "TableSchema",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "vw_tablecolumnmetadata": {
+      "queryId": "6aa88588-9aa4-4c17-9a4e-666c86e00f4f",
+      "queryName": "vw_tablecolumnmetadata"
+    },
+    "map_schema": {
+      "queryId": "371a76a4-a2cd-464b-9bf6-cfb17b09828c",
+      "queryName": "map_schema"
+    },
+    "Pace_Property": {
+      "queryId": "976e4809-dd94-4c9d-ab2b-403e59429df2",
+      "queryName": "Pace_Property"
+    },
+    "Pace_Segment": {
+      "queryId": "dcf58cc5-3955-43b2-a5b3-9780c76803b9",
+      "queryName": "Pace_Segment"
+    },
+    "Pace_RoomType": {
+      "queryId": "deba3d6c-66f1-4e66-ad9b-2183529e5839",
+      "queryName": "Pace_RoomType"
+    },
+    "Demand_Property": {
+      "queryId": "32dd7701-dbd8-4a0b-995e-7a6ef8ba4962",
+      "queryName": "Demand_Property"
+    },
+    "Demand_Segment": {
+      "queryId": "717fcc8b-26c4-43c7-bbf7-8621a5eb833d",
+      "queryName": "Demand_Segment"
+    },
+    "Demand_RoomType": {
+      "queryId": "4cd1c26d-889b-4c8c-b8f2-484fab488f51",
+      "queryName": "Demand_RoomType"
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1Aa1MW2arWGBn0uwqHizUt56fhNEtL5opc34gnfKxMHY/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"518845e5-35d2-468f-aca4-e63f3dbb9480\"}"
+    }
+  ],
+  "fastCombine": true
+}

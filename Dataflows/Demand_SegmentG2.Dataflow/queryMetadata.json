@@ -118,6 +118,12 @@
       "queryId": "a7e36313-a782-4cb1-860d-b0768855e69e",
       "queryName": "SafeMapDemandSegmentSchemaFallback",
       "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "Demand_Segment_DataDestination": {
+      "queryId": "e40dcad5-eb72-42ef-9973-cc6a2b796ea5",
+      "queryName": "Demand_Segment_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
     }
   },
   "connections": [
@@ -140,6 +146,11 @@
       "path": "https://docs.google.com/spreadsheets/d/19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs/export",
       "kind": "Web",
       "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"c323e9f3-cde6-4509-b7c3-0ffb95185ee2\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1da0c9-e692-4896-98fb-83bd2b6f301d\"}"
     }
   ],
   "fastCombine": true

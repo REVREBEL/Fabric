@@ -87,6 +87,7 @@ shared #"Transform file" = (Parameter as binary) => let
     })
 in
     TypedColumns;
+[DataDestinations = {[Definition = [Kind = "Reference", QueryName = "Demand_Segment_DataDestination", IsNewTarget = true], Settings = [Kind = "Automatic", TypeSettings = [Kind = "Table"]]]}]
 shared Demand_Segment = let
     //-- ✅ Get column names from sample file
     ColumnNames = Table.ColumnNames(#"Transform file"(#"Sample file")),
@@ -108,7 +109,8 @@ shared Demand_Segment = let
     InvokeTransform = Table.AddColumn(FilteredHiddenFiles, "Transformed Data", each #"Transform file"([Content])),
     RenamedColumns = Table.RenameColumns(InvokeTransform, {{"Name", "Source.Name"}}),
     RemovedOtherColumns = Table.SelectColumns(RenamedColumns, {"Source.Name", "Transformed Data"}),
-    ExpandedTable = Table.ExpandTableColumn(RemovedOtherColumns, "Transformed Data", ColumnNames),
+    RemovedErrors = Table.RemoveRowsWithErrors(RemovedOtherColumns, {"Transformed Data"}),
+    ExpandedTable = Table.ExpandTableColumn(RemovedErrors, "Transformed Data", ColumnNames),
     //
     TypedColumns = Table.TransformColumnTypes(ExpandedTable, {
     //
@@ -263,8 +265,8 @@ shared Demand_Segment = let
         "rms", "rms_pct_var_py", "cs_rms_pct_var_py", 
         "rms_chg_pw", "rms_pct_chg_pw", "cs_rms_pct_chg_pw", 
         "adr", "adr_rank", "revpar", "revpar_rank", 
-        "hotel_shortname",  "cs_set_id", "physical_capacity", "cs_physical_capacity",
-        "month_year", "cy", "weekday", "dow", 
+        "property_shortname",  "cs_set_id", "physical_capacity", "cs_physical_capacity",
+        "cy", "month_year", "month", "weekday", "dow", 
         "segment_code",	"segment_sort",	"segment_group", "segment_group_code", "finance_segment",
         "cs_demand_id", "snapshot_date", "ingested_timestamp", "sent_to_big_query", "date_sent_to_big_query"
     },
@@ -689,3 +691,10 @@ shared SafeMapDemandSegmentSchemaFallback = let
   })
 in
   ReplaceErrors;
+shared Demand_Segment_DataDestination = let
+  Pattern = Lakehouse.Contents([CreateNavigationProperties = false, EnableFolding = false]),
+  Navigation_1 = Pattern{[workspaceId = "6fc7a30e-b793-4185-b9d5-2cbe481efae7"]}[Data],
+  Navigation_2 = Navigation_1{[lakehouseId = "f266312a-87c6-47eb-aff9-fd34597688fb"]}[Data],
+  TableNavigation = Navigation_2{[Id = "Demand_Segment", ItemKind = "Table"]}?[Data]?
+in
+  TableNavigation;
