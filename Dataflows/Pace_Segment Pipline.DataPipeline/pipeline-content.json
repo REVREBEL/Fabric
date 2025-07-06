@@ -1,0 +1,840 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "PaceData_Segment",
+        "type": "Copy",
+        "dependsOn": [
+          {
+            "activity": "PaceData_Segment_Dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT * FROM PaceData_Segment\nWHERE sent_to_big_query = 'FALSE'",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "StagingWarehouseForDataflows_20250703032654",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+                    "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+                  }
+                }
+              },
+              "type": "DataWarehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "PaceData_Segment"
+              }
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+              "type": "GoogleCloudStorageWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            },
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "GoogleCloudStorageLocation",
+                  "bucketName": "pacedata_segment_import",
+                  "fileName": {
+                    "value": "@concat('PaceData_Segment', formatDateTime(pipeline().TriggerTime, 'yyyyMMdd'))",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "f89f509b-818c-4606-a0eb-0b87c152a11e"
+              }
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "property_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "property_name",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_name_map",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "property_name_map",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "available_rms_map",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "available_rms_map",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "hotel_shortname_map",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "hotel_shortname_map",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "dow",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "stay_date_py",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "stay_date_py",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_fct_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_fct_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_fct_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "adr_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_fct_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "adr_fct_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_fct_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_fct_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_stly",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_st2y",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "rms_st19",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "adr_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "adr_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "adr_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_stly",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_st2y",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "rev_st19",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "arrivals_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "arrivals_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "departures_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "departures_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "no_show_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "no_show_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "no_show_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "cx_py",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "cx_cy",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "cx_cy",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_fct_rms_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "property_fct_rms_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_fct_rms_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "property_fct_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_fct_rev_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "property_fct_rev_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "property_fct_rev_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "property_fct_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "bgt_rms_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "bgt_rms_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_cy",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "bgt_rev_cy",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "float"
+                },
+                "sink": {
+                  "name": "bgt_rev_py",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "segment_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "bigint"
+                },
+                "sink": {
+                  "name": "segment_sort",
+                  "type": "Int64",
+                  "physicalType": "INT_64"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "segment_group",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "segment_group_code",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                },
+                "sink": {
+                  "name": "finance_segment",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "snapshot_date",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "snapshot_date",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                },
+                "sink": {
+                  "name": "ingested_timestamp",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                },
+                "sink": {
+                  "name": "sent_to_big_query",
+                  "type": "Boolean",
+                  "physicalType": "BOOLEAN"
+                }
+              },
+              {
+                "source": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                },
+                "sink": {
+                  "name": "date_sent_to_big_query",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        }
+      },
+      {
+        "name": "UpdateSentToBiqQuery",
+        "type": "Script",
+        "dependsOn": [
+          {
+            "activity": "PaceData_Segment",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "linkedService": {
+          "name": "StagingWarehouseForDataflows_20250703032654",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+              "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+              "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+            }
+          }
+        },
+        "typeProperties": {
+          "scripts": [
+            {
+              "type": "NonQuery",
+              "text": {
+                "value": "UPDATE PaceData_Segment\nSET\n    sent_to_big_query = 1,\n    date_sent_to_big_query = SYSDATETIME()\nWHERE sent_to_big_query = 0;",
+                "type": "Expression"
+              }
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        }
+      },
+      {
+        "name": "PaceData_Segment_Dataflow",
+        "type": "RefreshDataflow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "f0df5e54-6935-4a6a-b8de-4067e0eab4b2",
+          "workspaceId": "cf4eda63-a00f-4e36-9755-49df9e77ed6f",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        }
+      },
+      {
+        "name": "ErrorLogging",
+        "type": "Script",
+        "dependsOn": [
+          {
+            "activity": "PaceData_Segment_Dataflow",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "linkedService": {
+          "name": "StagingWarehouseForDataflows_20250703032654",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "msbvoon2ra2ejbu7qwwi3bse3m-b2r4o34tw6cudoovfs7eqhx244.datawarehouse.fabric.microsoft.com",
+              "artifactId": "671b1547-f5c9-4186-8822-25c0bf0d8af4",
+              "workspaceId": "6fc7a30e-b793-4185-b9d5-2cbe481efae7"
+            }
+          }
+        },
+        "typeProperties": {
+          "scripts": [
+            {
+              "type": "NonQuery",
+              "text": {
+                "value": "INSERT INTO dbo.DataflowErrorLog (\n    PipelineName,\n    ActivityName,\n    Status,\n    Error,\n    Timestamp\n)\nVALUES (\n    '@{pipeline().Pipeline}',                             \n    'PaceData_Segment_Dataflow',                         \n    'Failed',                                           \n    '@{activity('PaceData_Segment_Dataflow').error.message}',\n    SYSUTCDATETIME()                                    \n);",
+                "type": "Expression"
+              }
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        }
+      }
+    ],
+    "variables": {
+      "insert_timestamp": {
+        "type": "String"
+      }
+    }
+  }
+}

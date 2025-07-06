@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "Pace_SegmentG2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "65ce5977-9e2e-98b8-4c2e-537126dbf29c"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "PaceData",
+  "queryGroups": [
+    {
+      "id": "4b3c182e-5a3b-4ef7-94df-9af1fdde9823",
+      "name": "Transform file from Query",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "8764bdb0-2314-4ad4-8403-c02cfec4ef99",
+      "name": "Helper queries",
+      "description": "",
+      "parentId": "4b3c182e-5a3b-4ef7-94df-9af1fdde9823",
+      "order": 2
+    },
+    {
+      "id": "88113335-d90f-490b-a609-db8b199cde70",
+      "name": "Maps",
+      "description": "",
+      "order": 1
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "fnTransformFile": {
+      "queryId": "bb4ba6e6-b4b3-4a23-8694-45a2083af92c",
+      "queryName": "fnTransformFile",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "99cc04e8-9276-499c-97d8-616a0d5801a9",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "4b3c182e-5a3b-4ef7-94df-9af1fdde9823",
+      "loadEnabled": false
+    },
+    "Sample file": {
+      "queryId": "2e1391ea-b4c1-41f0-8445-4cca5568ded1",
+      "queryName": "Sample file",
+      "queryGroupId": "8764bdb0-2314-4ad4-8403-c02cfec4ef99",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "266d3e92-86a6-4a4b-b38e-14adb45a77ac",
+      "queryName": "Parameter",
+      "queryGroupId": "8764bdb0-2314-4ad4-8403-c02cfec4ef99",
+      "loadEnabled": false
+    },
+    "Transform file": {
+      "queryId": "6de5e8b6-d241-46fa-a8d4-6e503f9f056c",
+      "queryName": "Transform file",
+      "queryGroupId": "8764bdb0-2314-4ad4-8403-c02cfec4ef99",
+      "loadEnabled": false
+    },
+    "DemandData_Channel": {
+      "queryId": "6ba0efa7-4ca2-4349-b28c-7198d6446140",
+      "queryName": "DemandData_Channel"
+    },
+    "map_property_gsheet": {
+      "queryId": "27ec85f5-9239-4de6-ab6b-0b1bbb104b82",
+      "queryName": "map_property_gsheet",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapProperty": {
+      "queryId": "acea8a94-cc08-47cb-997d-b0c796d6d374",
+      "queryName": "SafeMapProperty",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapPropertySchemaFallback": {
+      "queryId": "1506a278-8608-4c75-b99b-e9c84e4d1db8",
+      "queryName": "SafeMapPropertySchemaFallback",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "map_compset_gsheet": {
+      "queryId": "4abbc55f-73d5-4702-8f13-6c489d4d8064",
+      "queryName": "map_compset_gsheet",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapCompset": {
+      "queryId": "11af3580-0d04-410d-876d-69f79bc1acaf",
+      "queryName": "SafeMapCompset",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapCompsetSchemaFallback": {
+      "queryId": "310bdae3-595a-4181-84e3-17e67aa6a8b6",
+      "queryName": "SafeMapCompsetSchemaFallback",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "map_demand_data_gsheet": {
+      "queryId": "6e70326a-e90e-4828-8836-aafafc7f1709",
+      "queryName": "map_demand_data_gsheet",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapDemandData": {
+      "queryId": "06a351eb-9147-49af-bf2d-38f3ce056f78",
+      "queryName": "SafeMapDemandData",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "SafeMapDemandDataSchemaFallback": {
+      "queryId": "052dd88c-6f96-4e14-9de3-f053969883cc",
+      "queryName": "SafeMapDemandDataSchemaFallback",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
+    },
+    "map_demand_channel": {
+      "queryId": "40869858-544a-4eb2-9de2-91d1e9d4e802",
+      "queryName": "map_demand_channel",
+      "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/demand",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0a36e706-39be-43c7-8309-12e4d611b3dc\"}"
+    },
+    {
+      "path": "https://aparium.sharepoint.com/sites/demand-reporting",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"35f1f628-2d8e-4856-ba30-e4990dc14b2c\"}"
+    }
+  ],
+  "fastCombine": true
+}

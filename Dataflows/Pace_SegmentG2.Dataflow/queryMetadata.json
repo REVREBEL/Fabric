@@ -1,0 +1,167 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Demand_SegmentG2",
+  "queryGroups": [
+    {
+      "id": "095fd54b-02f5-478e-8669-2fc2b6bae1bf",
+      "name": "Transform file from Query"
+    },
+    {
+      "id": "58173d80-f5fe-4007-9c19-c86d33cb6be6",
+      "name": "Helper queries",
+      "parentId": "095fd54b-02f5-478e-8669-2fc2b6bae1bf"
+    },
+    {
+      "id": "9454c7fa-9d59-437e-8833-3c56554284de",
+      "name": "Maps",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "9f712aa8-634e-41aa-abc6-148964dc12ef",
+      "name": "SafeTypeDebug",
+      "description": "",
+      "order": 3
+    },
+    {
+      "id": "c7914f86-88f3-43f8-b8ed-176d6000327f",
+      "name": "Utilities",
+      "description": "Utilities Query",
+      "order": 4
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Pace_Segment": {
+      "queryId": "96e16ed1-3aa7-4d9b-9640-21238d36d62e",
+      "queryName": "Pace_Segment"
+    },
+    "Sample file": {
+      "queryId": "09ee4100-e544-4697-98a9-cfb98cf3da51",
+      "queryName": "Sample file",
+      "queryGroupId": "58173d80-f5fe-4007-9c19-c86d33cb6be6",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "3b73d1ee-2ddf-46c2-a622-8031120a8f72",
+      "queryName": "Parameter",
+      "queryGroupId": "58173d80-f5fe-4007-9c19-c86d33cb6be6",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "db865386-67a3-4e72-b284-a019a18f0a1c",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "095fd54b-02f5-478e-8669-2fc2b6bae1bf",
+      "loadEnabled": false
+    },
+    "ColumnNames": {
+      "queryId": "21b96dd7-f752-476c-aa7a-ccdb9efe0571",
+      "queryName": "ColumnNames",
+      "queryGroupId": "095fd54b-02f5-478e-8669-2fc2b6bae1bf"
+    },
+    "Transform file": {
+      "queryId": "55f70c28-fe51-4f2a-8d64-e6e4584bf8b2",
+      "queryName": "Transform file",
+      "queryGroupId": "58173d80-f5fe-4007-9c19-c86d33cb6be6",
+      "loadEnabled": false
+    },
+    "map_property_gsheet": {
+      "queryId": "5ac0486d-230b-4a0e-8b3f-3f18e20382cf",
+      "queryName": "map_property_gsheet",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "SafeMapProperty": {
+      "queryId": "37a0f6c8-6eb4-4c4d-adbe-00a9044c5247",
+      "queryName": "SafeMapProperty",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "SafeMapPropertySchemaFallback": {
+      "queryId": "9d8f7901-b1aa-4a17-95e5-cdef8de0d421",
+      "queryName": "SafeMapPropertySchemaFallback",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "map_segment_gsheet": {
+      "queryId": "0bc84730-f935-49a9-8813-81fd008a86ad",
+      "queryName": "map_segment_gsheet",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "SafeMapSegment": {
+      "queryId": "9d1b963f-9dfc-41b1-bbc1-c759f873c719",
+      "queryName": "SafeMapSegment",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "SafeMapSegmentSchemaFallback": {
+      "queryId": "657b1590-26fe-4e64-98f2-f381c887e886",
+      "queryName": "SafeMapSegmentSchemaFallback",
+      "queryGroupId": "9454c7fa-9d59-437e-8833-3c56554284de"
+    },
+    "SafeTypeChecker": {
+      "queryId": "4b209d92-6e47-4efb-9431-37b1f06c6562",
+      "queryName": "SafeTypeChecker",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef"
+    },
+    "SafeTypeErrorLogBuilder": {
+      "queryId": "d301b65c-7c7b-4d1f-895b-46046b16b724",
+      "queryName": "SafeTypeErrorLogBuilder",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef"
+    },
+    "fnGenerateErrorLog": {
+      "queryId": "5d0be36b-e0a7-442d-ba86-2b8f2767751d",
+      "queryName": "fnGenerateErrorLog",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef",
+      "loadEnabled": false
+    },
+    "fnCleanValidRows": {
+      "queryId": "94fe0248-e314-4ce8-84b2-b92dab26d5a8",
+      "queryName": "fnCleanValidRows",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef",
+      "loadEnabled": false
+    },
+    "SafeTypeFabricLogBuilder": {
+      "queryId": "913a3ada-bf4f-4df8-8aa7-1b29ebf46aea",
+      "queryName": "SafeTypeFabricLogBuilder",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef"
+    },
+    "ErrorLog": {
+      "queryId": "d8413412-04fc-4f3e-b41a-60ac810f067b",
+      "queryName": "ErrorLog",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef"
+    },
+    "ValidationConfig": {
+      "queryId": "a1af3ab8-82d5-48b2-b118-97b48f50bc8c",
+      "queryName": "ValidationConfig",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef"
+    },
+    "fnExportToFabricLakehouse": {
+      "queryId": "50767363-75a2-45ee-ad41-565e47a0e720",
+      "queryName": "fnExportToFabricLakehouse",
+      "queryGroupId": "9f712aa8-634e-41aa-abc6-148964dc12ef",
+      "loadEnabled": false
+    },
+    "GetColumnTypes": {
+      "queryId": "587caa1b-3f30-4418-b87d-9a64b352bef4",
+      "queryName": "GetColumnTypes",
+      "queryGroupId": "c7914f86-88f3-43f8-b8ed-176d6000327f",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/demand",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0a36e706-39be-43c7-8309-12e4d611b3dc\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/pace",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"d3b84e8d-fb83-428b-bb6b-d21731b426cd\"}"
+    }
+  ],
+  "fastCombine": true
+}

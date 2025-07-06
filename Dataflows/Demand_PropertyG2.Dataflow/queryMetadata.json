@@ -1,0 +1,157 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Dataflow 1",
+  "queryGroups": [
+    {
+      "id": "22ffab05-87ae-476a-b8d6-e2859a929074",
+      "name": "Transform file from DemandData_Property"
+    },
+    {
+      "id": "22c16be6-ecf1-4e35-b20f-9ccacf4367cb",
+      "name": "Helper queries",
+      "parentId": "22ffab05-87ae-476a-b8d6-e2859a929074"
+    },
+    {
+      "id": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "name": "Helper Queries",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "63ffe5fa-2947-414d-8240-2af7f7acecbc",
+      "name": "Maps",
+      "description": "",
+      "order": 1
+    }
+  ],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DemandData_Property": {
+      "queryId": "9f5e7cab-09a9-4af1-9d74-5c9c48f4e9ff",
+      "queryName": "DemandData_Property"
+    },
+    "Sample file": {
+      "queryId": "ede5037e-9308-4f73-ac20-47dca24f14d7",
+      "queryName": "Sample file",
+      "queryGroupId": "22c16be6-ecf1-4e35-b20f-9ccacf4367cb",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "29262bd5-8e02-48d4-8521-be22adba54ea",
+      "queryName": "Parameter",
+      "queryGroupId": "22c16be6-ecf1-4e35-b20f-9ccacf4367cb",
+      "loadEnabled": false
+    },
+    "Transform Sample file": {
+      "queryId": "4b0a1c81-91d9-492a-ba7b-b756f79c167b",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "22ffab05-87ae-476a-b8d6-e2859a929074",
+      "loadEnabled": false
+    },
+    "ColumnNames": {
+      "queryId": "e806525d-2faa-417f-a6d6-968db68c567b",
+      "queryName": "ColumnNames",
+      "queryGroupId": "22ffab05-87ae-476a-b8d6-e2859a929074"
+    },
+    "Transform file": {
+      "queryId": "8e674470-24fd-4597-a40f-e3a13a64814a",
+      "queryName": "Transform file",
+      "queryGroupId": "22c16be6-ecf1-4e35-b20f-9ccacf4367cb",
+      "loadEnabled": false
+    },
+    "GetColumnNames": {
+      "queryId": "d3dad071-321f-4707-bb5d-921f6a1631ce",
+      "queryName": "GetColumnNames",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "ReplaceColumnNames": {
+      "queryId": "4823a728-8e10-487d-a4f6-895f8659a001",
+      "queryName": "ReplaceColumnNames",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "GetColumnNames_Table": {
+      "queryId": "943fb308-afdf-44e3-b745-91b6c114a506",
+      "queryName": "GetColumnNames_Table",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "GetColumnTypes": {
+      "queryId": "7aa6999b-4f40-49f1-9940-618b790dcb07",
+      "queryName": "GetColumnTypes",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "GetColumnTypes_Table": {
+      "queryId": "2af839a5-198b-4912-baf4-3049083830f0",
+      "queryName": "GetColumnTypes_Table",
+      "queryGroupId": "b126eca9-4262-4a42-bbc9-cde469d4ba3c",
+      "loadEnabled": false
+    },
+    "map_property_gsheet": {
+      "queryId": "206292de-02d5-41e0-97b7-8008764909b2",
+      "queryName": "map_property_gsheet",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapProperty": {
+      "queryId": "3713cd2f-5f0e-462b-beea-b082f6e34773",
+      "queryName": "SafeMapProperty",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapPropertySchemaFallback": {
+      "queryId": "ddf1d67e-a093-4cba-bc2a-6b32df9083da",
+      "queryName": "SafeMapPropertySchemaFallback",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "map_compset_gsheet": {
+      "queryId": "51c94606-183c-4c59-9d8f-bfa2b69f3cde",
+      "queryName": "map_compset_gsheet",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapCompset": {
+      "queryId": "5ee5ae68-2089-46a9-b1f5-15564ff02768",
+      "queryName": "SafeMapCompset",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapCompsetSchemaFallback": {
+      "queryId": "4bbcda8d-3885-47df-b292-639786725a14",
+      "queryName": "SafeMapCompsetSchemaFallback",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "map_demand_data_gsheet": {
+      "queryId": "ada6bce8-1267-4232-97d1-4ca517c79d40",
+      "queryName": "map_demand_data_gsheet",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapDemandData": {
+      "queryId": "dfd269ee-d3a2-478d-a12c-787f255f1959",
+      "queryName": "SafeMapDemandData",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "SafeMapDemandDataSchemaFallback": {
+      "queryId": "583e7c0f-fdad-420d-893a-4b8ed89b70c3",
+      "queryName": "SafeMapDemandDataSchemaFallback",
+      "queryGroupId": "63ffe5fa-2947-414d-8240-2af7f7acecbc"
+    },
+    "DemandData_Property_Debug": {
+      "queryId": "3c55e412-6d17-40c1-8a4f-d0225ceeac6e",
+      "queryName": "DemandData_Property_Debug",
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/demand",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0a36e706-39be-43c7-8309-12e4d611b3dc\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    }
+  ],
+  "fastCombine": true
+}
