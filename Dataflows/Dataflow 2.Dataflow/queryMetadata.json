@@ -2,8 +2,185 @@
   "formatVersion": "202502",
   "computeEngineSettings": {},
   "name": "Dataflow 2",
-  "queryGroups": [],
+  "queryGroups": [
+    {
+      "id": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33",
+      "name": "Transform file from Query",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "c2ff1b23-75a9-4b25-86d5-e20df98d95fc",
+      "name": "Helper queries",
+      "description": "",
+      "parentId": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33",
+      "order": 2
+    },
+    {
+      "id": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238",
+      "name": "Maps",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "name": "SafeTypeDebug",
+      "description": "",
+      "order": 1
+    },
+    {
+      "id": "41f3b3d8-f389-46e0-b8e8-6951dc103823",
+      "name": "Utilities",
+      "description": "Utilities Query",
+      "order": 1
+    }
+  ],
   "documentLocale": "en-US",
-  "queriesMetadata": {},
-  "connections": []
+  "queriesMetadata": {
+    "Transform Sample file": {
+      "queryId": "24e85c48-5653-4bac-b6cd-9396094ec994",
+      "queryName": "Transform Sample file",
+      "queryGroupId": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33",
+      "loadEnabled": false
+    },
+    "ColumnNames": {
+      "queryId": "2ed33124-97c4-4ff1-87da-e0e5be46e435",
+      "queryName": "ColumnNames",
+      "queryGroupId": "0c4e9f9d-5bdb-4363-8370-aab947dc9d33"
+    },
+    "Sample file": {
+      "queryId": "4e23a1e5-de58-47ba-8887-30d4f5d246d5",
+      "queryName": "Sample file",
+      "queryGroupId": "c2ff1b23-75a9-4b25-86d5-e20df98d95fc",
+      "loadEnabled": false
+    },
+    "Parameter": {
+      "queryId": "f0f7ec68-af5b-4053-851d-535ad6779633",
+      "queryName": "Parameter",
+      "queryGroupId": "c2ff1b23-75a9-4b25-86d5-e20df98d95fc",
+      "loadEnabled": false
+    },
+    "Transform file": {
+      "queryId": "c597b972-4770-489f-9377-debbcab0345c",
+      "queryName": "Transform file",
+      "queryGroupId": "c2ff1b23-75a9-4b25-86d5-e20df98d95fc",
+      "loadEnabled": false
+    },
+    "map_property_gsheet": {
+      "queryId": "dab9ad2a-ab97-4604-8dd0-a63ccf58e6eb",
+      "queryName": "map_property_gsheet",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "SafeMapProperty": {
+      "queryId": "60b62481-f5ba-40e3-bb56-5f48bab257c4",
+      "queryName": "SafeMapProperty",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "SafeMapPropertySchemaFallback": {
+      "queryId": "26d55554-e485-4c54-bd88-d5b52463a9bc",
+      "queryName": "SafeMapPropertySchemaFallback",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "map_roomtype_gsheet": {
+      "queryId": "e3da341b-f88a-4a92-bf25-c27494121c20",
+      "queryName": "map_roomtype_gsheet",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "SafeMapRoomType": {
+      "queryId": "5573f51c-7d87-401f-9f45-c782a4d64ecb",
+      "queryName": "SafeMapRoomType",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "SafeMapRoomTypeSchemaFallback": {
+      "queryId": "e89c715d-54c6-4e7e-8f2d-64b7ab00b7dc",
+      "queryName": "SafeMapRoomTypeSchemaFallback",
+      "queryGroupId": "0a8b6bfd-4d80-4ede-a7f6-4e603ada8238"
+    },
+    "SafeTypeChecker": {
+      "queryId": "08dda373-b59d-4180-b683-c140e814e57f",
+      "queryName": "SafeTypeChecker",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "SafeTypeErrorLogBuilder": {
+      "queryId": "ece3605b-35f5-4849-9e3e-ea815ec441aa",
+      "queryName": "SafeTypeErrorLogBuilder",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "fnGenerateErrorLog": {
+      "queryId": "b87ba94a-c4c3-4807-9fa1-6a7022fe5f39",
+      "queryName": "fnGenerateErrorLog",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "fnCleanValidRows": {
+      "queryId": "b1acfb9a-9fc9-48e5-a906-79c3d4c9f67c",
+      "queryName": "fnCleanValidRows",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "SafeTypeFabricLogBuilder": {
+      "queryId": "a137aef5-3b45-4bc3-bcf6-2704ba5f50d6",
+      "queryName": "SafeTypeFabricLogBuilder",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "ErrorLog": {
+      "queryId": "1bacc232-40c1-437d-a23d-6f3aff918d6b",
+      "queryName": "ErrorLog",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "ValidationConfig": {
+      "queryId": "75b06fb5-ac48-4a46-a154-b05e3ca8a943",
+      "queryName": "ValidationConfig",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "fnExportToFabricLakehouse": {
+      "queryId": "d2e97349-fed7-4ba8-a225-8d29d9509ef1",
+      "queryName": "fnExportToFabricLakehouse",
+      "queryGroupId": "fc747e6f-aa4a-4856-86ab-0b11229b3710",
+      "loadEnabled": false
+    },
+    "GetColumnTypes": {
+      "queryId": "381cc8e9-0783-4799-bda1-0f3b7f458815",
+      "queryName": "GetColumnTypes",
+      "queryGroupId": "41f3b3d8-f389-46e0-b8e8-6951dc103823",
+      "loadEnabled": false
+    },
+    "Pace_RoomType": {
+      "queryId": "2eb3b67c-2c6f-42e1-bc01-50e3155eafe0",
+      "queryName": "Pace_RoomType"
+    }
+  },
+  "connections": [
+    {
+      "path": "PowerPlatformDataflows",
+      "kind": "PowerPlatformDataflows",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"a5d51cbd-d112-430f-b7cc-effcb9df8c80\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/pace",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"d3b84e8d-fb83-428b-bb6b-d21731b426cd\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"4e1aa2c4-ba7b-47bf-a911-a1d18124c920\"}"
+    },
+    {
+      "path": "https://docs.google.com/spreadsheets/d/19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs/export",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"c323e9f3-cde6-4509-b7c3-0ffb95185ee2\"}"
+    },
+    {
+      "path": "https://revrebelhub.sharepoint.com/sites/rate",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f9593da5-3a12-4074-80a7-d03ed7961cb7\",\"DatasourceId\":\"0e86c6ae-08e0-4aa0-8f61-d110d1d3be5b\"}"
+    }
+  ],
+  "fastCombine": true
 }

@@ -21,6 +21,12 @@
       "name": "Maps",
       "description": "",
       "order": 1
+    },
+    {
+      "id": "e1270993-120d-4641-b72a-a33880c04e25",
+      "name": "Transform file",
+      "parentId": "4b3c182e-5a3b-4ef7-94df-9af1fdde9823",
+      "order": 1
     }
   ],
   "documentLocale": "en-US",
@@ -44,14 +50,14 @@
       "loadEnabled": false
     },
     "Transform file": {
-      "queryId": "6de5e8b6-d241-46fa-a8d4-6e503f9f056c",
+      "queryId": "329050b4-42f7-4d66-a2d6-12ec0f2a84ae",
       "queryName": "Transform file",
       "queryGroupId": "8764bdb0-2314-4ad4-8403-c02cfec4ef99",
       "loadEnabled": false
     },
-    "Demand_Channel": {
+    "Demand_Segment": {
       "queryId": "6ba0efa7-4ca2-4349-b28c-7198d6446140",
-      "queryName": "Demand_Channel"
+      "queryName": "Demand_Segment"
     },
     "map_property_gsheet": {
       "queryId": "27ec85f5-9239-4de6-ab6b-0b1bbb104b82",
@@ -98,19 +104,19 @@
       "queryName": "SafeMapDemandDataSchemaFallback",
       "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
     },
-    "map_demand_channel_gsheet": {
+    "map_demand_segment_gsheet": {
       "queryId": "40869858-544a-4eb2-9de2-91d1e9d4e802",
-      "queryName": "map_demand_channel_gsheet",
+      "queryName": "map_demand_segment_gsheet",
       "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
     },
-    "SafeMapDemadChannel": {
-      "queryId": "e8869ef9-1811-498b-ad39-01091a597ba0",
-      "queryName": "SafeMapDemadChannel",
+    "SafeMapDemandSegment": {
+      "queryId": "784c299d-6fd5-43bf-86b3-570a2ed97481",
+      "queryName": "SafeMapDemandSegment",
       "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
     },
-    "SafeMapDemandChannelSchemaFallback": {
-      "queryId": "1f104aa2-4a1a-4f23-879a-d0c6acfc154c",
-      "queryName": "SafeMapDemandChannelSchemaFallback",
+    "SafeMapDemandSegmentSchemaFallback": {
+      "queryId": "a7e36313-a782-4cb1-860d-b0768855e69e",
+      "queryName": "SafeMapDemandSegmentSchemaFallback",
       "queryGroupId": "88113335-d90f-490b-a609-db8b199cde70"
     }
   },

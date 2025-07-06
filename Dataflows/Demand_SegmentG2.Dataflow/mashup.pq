@@ -29,9 +29,9 @@ shared #"Transform Sample file" = let
     }),
     
     TypedColumns = Table.TransformColumnTypes(RemovedColumns, {
-      {"channel", type text},
+      {"segment", type text},
       {"month", type text},
-      {"stay_date", type datetime}
+      {"stay_date", type date}
     })
 in
     TypedColumns;
@@ -43,32 +43,62 @@ shared #"Sample file" = let
         [Extension] = ".csv" and 
         ([Attributes]?[Hidden]? <> true)
     ),
-  TemplateFile = Table.SelectRows(FilteredFiles, each Text.Contains([Name], "D360_T1_Channel_Mix_Schema.csv")),
-  FirstFile = try TemplateFile{0}[Content] otherwise error "D360 Channel Mix Schema template file not found"
+  TemplateFile = Table.SelectRows(FilteredFiles, each Text.Contains([Name], "D360_T1_Segment_Mix_Schema.csv")),
+  FirstFile = try TemplateFile{0}[Content] otherwise error "D360 Segment Mix Schema template file not found"
 in
   FirstFile;
 shared Parameter = let
   Parameter = #"Sample file" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type binary, BinaryIdentifier = #"Sample file"]
 in
   Parameter;
+[FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample file""}"]
 shared #"Transform file" = (Parameter as binary) => let
-  Source = Csv.Document(Parameter, [Delimiter = ",", Columns = 35, Encoding = 65001]),
-  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"month", type text}, {"channel", type text}, {"stay_date", type date}, {"occ_total", Percentage.Type}, {"cs_occ_total", Percentage.Type}, {"occ_index_total", Int64.Type}, {"occ_rank_total", type text}, {"occ_index_var_py_total", Int64.Type}, {"occ_index_chg_pw_total", Int64.Type}, {"rms_sold_total", Int64.Type}, {"rms_sold_pct_var_py_total", Percentage.Type}, {"cs_rms_sold_pct_var_py_total", Percentage.Type}, {"rms_sold_chg_pw_total", Int64.Type}, {"rms_sold_pct_chg_pw_total", Percentage.Type}, {"cs_rms_sold_pct_chg_pw_total", Percentage.Type}, {"adr_total", Currency.Type}, {"adr_rank_total", type text}, {"revpar_total", Currency.Type}, {"revpar_rank_total", type text}, {"occ", Percentage.Type}, {"cs_occ", Percentage.Type}, {"occ_index", Int64.Type}, {"occ_rank", type text}, {"occ_index_var_py", Int64.Type}, {"occ_index_chg_pw", Int64.Type}, {"rms_sold", Int64.Type}, {"rms_sold_pct_var_py", Percentage.Type}, {"cs_rms_sold_pct_var_py", Percentage.Type}, {"rms_sold_chg_pw", Int64.Type}, {"rms_sold_pct_chg_pw", Percentage.Type}, {"cs_rms_sold_pct_chg_pw", Percentage.Type}, {"adr", Currency.Type}, {"adr_rank", type text}, {"revpar", Currency.Type}, {"revpar_rank", type text}})
+    // Try to read as UTF-8 comma-delimited first
+    CsvUTF8 = try Csv.Document(Parameter, [Delimiter = ",", QuoteStyle = QuoteStyle.None]),
+
+    // If that fails, fallback to UTF-16 tab-delimited
+    Source = if CsvUTF8[HasError] then
+                Csv.Document(Parameter, [Delimiter = "#(tab)", Encoding = 1200, QuoteStyle = QuoteStyle.None])
+             else
+                CsvUTF8[Value],
+
+    // Promote headers
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+
+    // Optional: Clean headers if needed
+    CleanedHeaders = Table.SelectColumns(PromotedHeaders, {"column1", "column2", "column3"}, MissingField.Ignore),
+
+    NormalizeHeader = (columnName as text) as text =>
+        Text.Lower(Text.Replace(columnName, " ", "_")),
+
+    RenamedHeaders = Table.TransformColumnNames(PromotedHeaders, NormalizeHeader),
+    
+    RemovedColumns = Table.RemoveColumns(RenamedHeaders, {
+      "occ_total", "cs_occ_total", "occ_index_total", "occ_rank_total", "occ_index_var_py_total", "occ_index_chg_pw_total", 
+      "rms_sold_total", "rms_sold_pct_var_py_total", "cs_rms_sold_pct_var_py_total", "rms_sold_chg_pw_total", 
+      "rms_sold_pct_chg_pw_total", "cs_rms_sold_pct_chg_pw_total", 
+      "adr_total", "adr_rank_total", "revpar_total", "revpar_rank_total"
+    }),
+    
+    TypedColumns = Table.TransformColumnTypes(RemovedColumns, {
+      {"segment", type text},
+      {"month", type text},
+      {"stay_date", type date}
+    })
 in
-  #"Changed column type";
-shared Demand_Channel = let
+    TypedColumns;
+shared Demand_Segment = let
     //-- ✅ Get column names from sample file
     ColumnNames = Table.ColumnNames(#"Transform file"(#"Sample file")),
 
     //-- ✅ Load files from SharePoint
     Source = SharePoint.Files("https://revrebelhub.sharepoint.com/sites/demand", [ApiVersion = 15]),
 
-    //-- ✅ Filter for PMS folder and Channel_Mix CSVs
+    //-- ✅ Filter for PMS folder and Segment_Mix CSVs
     FilteredFiles = Table.SelectRows(Source, each 
-        Text.Contains(Text.Lower([Folder Path]), "/_database/") and not
-        Text.Contains(Text.Lower([Folder Path]), "/_schema_templates/") and     
-        Text.Contains([Name], "Channel_Mix") and
+        Text.Contains(Text.Lower([Folder Path]), "/_database/") and
+        Text.Contains([Name], "Segment_Mix") and not
+        Text.Contains([Name], "D360_T1_Segment_Mix_Schema.csv") and
         //Text.Contains([Name], "DTWDFH") and
         [Extension] = ".csv"
     ),
@@ -82,7 +112,7 @@ shared Demand_Channel = let
     //
     TypedColumns = Table.TransformColumnTypes(ExpandedTable, {
     //
-            {"stay_date", type date}, {"channel", type text}, {"month", type text}, {"occ", type number}, {"cs_occ", type number}, {"occ_index", type number}, 
+            {"stay_date", type date}, {"month", type text}, {"occ", type number}, {"cs_occ", type number}, {"occ_index", type number}, 
             {"occ_rank", type text}, {"occ_index_var_py", type number}, {"occ_index_chg_pw", type number}, 
             {"rms_sold", Int64.Type}, {"rms_sold_pct_var_py", type number}, {"cs_rms_sold_pct_var_py", type number}, 
             {"rms_sold_chg_pw", type number}, {"rms_sold_pct_chg_pw", type number}, {"cs_rms_sold_pct_chg_pw", type number}, 
@@ -90,21 +120,12 @@ shared Demand_Channel = let
     //
     }),
     //
-    RemovedColumns = Table.RemoveColumns(TypedColumns, {
+    RenamedColumnHeaders = Table.RenameColumns(TypedColumns, {
     //
-            "occ_total", "cs_occ_total", "occ_index_total", "occ_rank_total", "occ_index_var_py_total", "occ_index_chg_pw_total", 
-            "rms_sold_total", "rms_sold_pct_var_py_total", "cs_rms_sold_pct_var_py_total", "rms_sold_chg_pw_total", 
-            "rms_sold_pct_chg_pw_total", "cs_rms_sold_pct_chg_pw_total", 
-            "adr_total", "adr_rank_total", "revpar_total", "revpar_rank_total"
-    //
-    }),
-    //
-    RenamedColumnHeaders = Table.RenameColumns(RemovedColumns, {
-    //
-            {"month","month_year"} ,{"channel","d360_channel"},
-            {"rms_sold","rms"} ,{"rms_sold_pct_var_py","rms_pct_var_py"} , 
-            {"cs_rms_sold_pct_var_py" , "cs_rms_pct_var_py"}, {"rms_sold_chg_pw","rms_chg_pw"} ,
-            {"rms_sold_pct_chg_pw","rms_pct_chg_pw"} ,{"cs_rms_sold_pct_chg_pw","cs_rms_pct_chg_pw"} 
+    {"month","month_year"} ,{"segment","d360_segment"},
+    {"rms_sold","rms"} ,{"rms_sold_pct_var_py","rms_pct_var_py"} , 
+    {"cs_rms_sold_pct_var_py" , "cs_rms_pct_var_py"}, {"rms_sold_chg_pw","rms_chg_pw"} ,
+    {"rms_sold_pct_chg_pw","rms_pct_chg_pw"} ,{"cs_rms_sold_pct_chg_pw","cs_rms_pct_chg_pw"} 
     //
     }),
      //-- ✅ Extract snapshot_date
@@ -186,7 +207,7 @@ shared Demand_Channel = let
     FinalOutputMergedDemandData = ExpandedDemandData,
     //
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-    // ✅ Add Property Data to Table from map_property Google Sheet
+    // ✅ Add Property Data to Table from map_property_gsheet Google Sheet
     // 
     MapPropertyDataExists = try Table.RowCount(SafeMapProperty) > 0 otherwise false,
     //
@@ -203,48 +224,48 @@ shared Demand_Channel = let
     FinalOutputMergedPropertyData = ExpandedPropertyData,
     //
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-    // ✅ Add Channel Data to Table from map_property Google Sheet
+    // ✅ Add Segment Data to Table from map_demand_segment_gsheet Google Sheet
     //
-    // ✂️ Step 1: Clean channel keys for matching
+    // ✂️ Step 1: Clean Segment keys for matching
     CleanText = (text) => Text.Trim(Text.Clean(text)),
-    TrimmedChannelData = Table.TransformColumns(FinalOutputMergedPropertyData, {{"d360_channel", CleanText, type text}}),
-    TrimmedMapChannel = Table.TransformColumns(SafeMapDemandChannel, {{"channel_key", CleanText, type text}}),
-
-    MapChannelDataExists = try Table.RowCount(TrimmedMapChannel) > 0 otherwise false,
-
-    MergedChannelData = if MapChannelDataExists then 
+    TrimmedSegmentData = Table.TransformColumns(FinalOutputMergedPropertyData, {{"d360_segment", CleanText, type text}}),
+    TrimmedMapSegment = Table.TransformColumns(map_demand_segment_gsheet, {{"segment_key", CleanText, type text}}),
+    //
+    MapSegmentDataExists = try Table.RowCount(TrimmedMapSegment) > 0 otherwise false,
+    //
+    MergedSegmentData = if MapSegmentDataExists then 
         Table.NestedJoin(
-            TrimmedChannelData, {"d360_channel"},
-            TrimmedMapChannel, {"channel_key"},
-            "map_demand_channel", JoinKind.LeftOuter)
+            TrimmedSegmentData, {"d360_segment"},
+            TrimmedMapSegment, {"segment_key"},
+            "map_demand_segment", JoinKind.LeftOuter)
         else FinalOutputMergedPropertyData,
-
-    WithTypedChannelColumns = if MapChannelDataExists then 
+    //
+    WithTypedSegmentColumns = if MapSegmentDataExists then 
         Table.TransformColumnTypes(
             Table.ExpandTableColumn(
-                MergedChannelData, "map_demand_channel", 
-                {"channel_group_code", "channel_group", "source_group_code", "source_group", "source_code", "source", "channel_sort"}
+                MergedSegmentData, "map_demand_segment", 
+                {"segment",	"segment_code",	"segment_sort",	"segment_group", "segment_group_code", "finance_segment"}
             ),
-            {{"channel_sort", Int64.Type}}
+            {{"segment_sort", Int64.Type}}
         )
-        else MergedChannelData,
-
-    FinalOutputMergedChannelData = WithTypedChannelColumns,
+        else MergedSegmentData,
+    //
+    FinalOutputMergedSegmentData = WithTypedSegmentColumns,
     //
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM    
     // ✅ Add Property Data to Table from map_property Google Sheet
-    WithIngestedTimestamp = Table.AddColumn(FinalOutputMergedChannelData, "ingested_timestamp", each DateTime.LocalNow(), type datetime),
+    WithIngestedTimestamp = Table.AddColumn(FinalOutputMergedSegmentData, "ingested_timestamp", each DateTime.LocalNow(), type datetime),
     ColumnOrder = {
         "property_code", "property_name", 
-        "stay_date", "d360_channel",  "channel_group",  "source",
+        "d360_segment",  "segment", "stay_date", 
         "occ", "cs_occ", "occ_index", "occ_rank", 
         "occ_index_var_py", "occ_index_chg_pw", 
         "rms", "rms_pct_var_py", "cs_rms_pct_var_py", 
         "rms_chg_pw", "rms_pct_chg_pw", "cs_rms_pct_chg_pw", 
         "adr", "adr_rank", "revpar", "revpar_rank", 
+        "hotel_shortname",  "cs_set_id", "physical_capacity", "cs_physical_capacity",
         "month_year", "cy", "weekday", "dow", 
-        "channel_group_code",  "source_group_code", "source_group",  "source_code", "channel_sort",
-        "property_shortname",  "cs_set_id", "physical_capacity", "cs_physical_capacity", 
+        "segment_code",	"segment_sort",	"segment_group", "segment_group_code", "finance_segment",
         "cs_demand_id", "snapshot_date", "ingested_timestamp", "sent_to_big_query", "date_sent_to_big_query"
     },
     AvailableColumns = Table.ColumnNames(WithIngestedTimestamp),
@@ -339,7 +360,7 @@ in
   ReplaceErrors;
 shared map_compset_gsheet = let
     Source = Csv.Document(
-        Web.Contents("https://docs.google.com/spreadsheets/d/19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs/export?format=csv&id=19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs&gid=2119579921"),
+        Web.Contents("https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export?format=csv&id=1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8&gid=1191952642"),
         [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
     ),
     #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
@@ -487,13 +508,13 @@ in
   ReplaceErrors;
 shared map_demand_data_gsheet = let
     Source = Csv.Document(
-        Web.Contents("https://docs.google.com/spreadsheets/d/19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs/export?format=csv&id=19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs&gid=1516844315"),
+        Web.Contents("https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export?format=csv&id=1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8&gid=2141383019"),
         [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
     ),
-  PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-  ChangedColumnTypeData = Table.TransformColumnTypes(PromotedHeaders, {{"cs_start_date", type date}, {"demand_cs_key", type text}, {"property_code", type text}, {"cs_demand_id", type text}, {"cs_set_id", type text}, {"physical_capacity", Int64.Type}, {"cs_physical_capacity", Int64.Type}, {"cs_end_date", type text}})
+    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+  ChangedColumnTypeData = Table.TransformColumnTypes(#"Promoted Headers", {{"cs_start_date", type date}, {"demand_cs_key", type text}, {"property_code", type text}, {"cs_demand_id", type text}, {"cs_set_id", type text}, {"physical_capacity", Int64.Type}, {"cs_physical_capacity", Int64.Type}, {"cs_end_date", type text}})
 in
-  ChangedColumnTypeData;
+    ChangedColumnTypeData;
 shared SafeMapDemandData = let
       ExpectedColumns = {
             "demand_cs_key",
@@ -580,96 +601,90 @@ shared SafeMapDemandDataSchemaFallback = let
   })
 in
   ReplaceErrors;
-shared map_demand_channel_gsheet = let
+shared map_demand_segment_gsheet = let
     Source = Csv.Document(
-        Web.Contents("https://docs.google.com/spreadsheets/d/1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8/export?format=csv&id=1JERzvRDvVbwfdEhFwF6JtwLLJ2md-IFFd5KLnS1ZRo8&gid=364758502"),
+        Web.Contents("https://docs.google.com/spreadsheets/d/19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs/export?format=csv&id=19r9FdllD9Mn3zZ4dr8Ss4S5Yq2xkaIV45RudibfPUUs&gid=2037741130"),
         [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
     ),
-    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
 in
-    #"Promoted Headers";
-shared SafeMapDemadChannel = let
+    PromotedHeaders;
+shared SafeMapDemandSegment = let
       ExpectedColumns = {
-            "channel_key", 
-            "channel_group_code", 
-            "channel_group", 
-            "source_group_code", 
-            "source_group", 
-            "source_code", 
-            "source", 
-            "channel_sort"
+            "segment_key",
+            "segment",
+            "segment_code",
+            "segment_sort",
+            "segment_group",
+            "segment_group_code",
+            "finance_segment"
       },
       //
-      ActualColumns = try Table.ColumnNames(map_demand_channel_gsheet) otherwise {},
+      ActualColumns = try Table.ColumnNames(map_demand_segment_gsheet) otherwise {},
       SchemaValid = List.Difference(ExpectedColumns, ActualColumns) = {},
 
-      SafeMapDemandChannelRaw = if SchemaValid 
-      then map_demand_channel_gsheet 
+      SafeMapDemandSegmentRaw = if SchemaValid 
+      then map_demand_segment_gsheet 
       else #table(ExpectedColumns, {}),
       //
-      TransformColumns = Table.TransformColumnTypes(SafeMapDemandChannelRaw, {
-            {"channel_key", type text},
-            {"channel_group_code", type text},
-            {"channel_group", type text},
-            {"source_group_code", type text},
-            {"source_group", type text},
-            {"source_code", type text},
-            {"source", type text},
-            {"channel_sort", Int64.Type}
+      TransformColumns = Table.TransformColumnTypes(SafeMapDemandSegmentRaw, {
+            {"segment_key", type text},
+            {"segment", type text},
+            {"segment_code", type text},
+            {"segment_sort", Int64.Type},
+            {"segment_group", type text},
+            {"segment_group_code", type text},
+            {"finance_segment", type text}
       }),
       //
       ReplaceErrors = Table.ReplaceErrorValues(TransformColumns, {
-            {"channel_key", null},
-            {"channel_group_code", null},
-            {"channel_group", null},
-            {"source_group_code", null},
-            {"source_group", type number},
-            {"source_code", type number},
-            {"source", type date},
-            {"channel_sort", null}  
+            {"segment_key", null},
+            {"segment", null},
+            {"segment_code", null},
+            {"segment_sort", null},
+            {"segment_group", null},
+            {"segment_group_code", null},
+            {"finance_segment", null}  
       })
 in
       ReplaceErrors;
-shared SafeMapDemandChannelSchemaFallback = let
-  EmptyMapDemandChannelTable = #table(
+shared SafeMapDemandSegmentSchemaFallback = let
+  EmptyMapDemandSegmentDataTable = #table(
   //
     {
     //
-            "channel_key", 
-            "channel_group_code", 
-            "channel_group", 
-            "source_group_code", 
-            "source_group", 
-            "source_code", 
-            "source", 
-            "channel_sort"
+            "segment_key",
+            "segment",
+            "segment_code",
+            "segment_sort",
+            "segment_group",
+            "segment_group_code",
+            "finance_segment"
   //
   },
   {}
   ),
-  TransformColumns = Table.TransformColumnTypes(EmptyMapDemandChannelTable, {
+  TransformColumns = Table.TransformColumnTypes(EmptyMapDemandSegmentDataTable, {
   //
-            {"channel_key", type text},
-            {"channel_group_code", type text},
-            {"channel_group", type text},
-            {"source_group_code", type text},
-            {"source_group", type text},
-            {"source_code", type text},
-            {"source", type text},
-            {"channel_sort", Int64.Type}
+            {"segment_key", type text},
+            {"segment", type text},
+            {"segment_code", type text},
+            {"segment_sort", Int64.Type},
+            {"segment_group", type text},
+            {"segment_group_code", type text},
+            {"finance_segment", type text}
   //
   }),
   //
   ReplaceErrors = Table.ReplaceErrorValues(TransformColumns, {
   //
-            {"channel_key", null},
-            {"channel_group_code", null},
-            {"channel_group", null},
-            {"source_group_code", null},
-            {"source_group", type null},
-            {"source_code", type null},
-            {"source", type null},
-            {"channel_sort", null}  
+            {"segment_key", null},
+            {"segment", null},
+            {"segment_code", null},
+            {"segment_sort", null},
+            {"segment_group", type number},
+            {"segment_group_code", type number},
+            {"finance_segment", null}
   //
   })
 in

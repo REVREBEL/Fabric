@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Dataflow",
-    "displayName": "Pace_RoomType"
+    "displayName": "Demand_SegmentG2"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "8bcfd265-4228-84d6-425b-0f425397d0c0"
+    "logicalId": "191ccb42-9ada-8522-4b86-ab7332c62143"
   }
 }

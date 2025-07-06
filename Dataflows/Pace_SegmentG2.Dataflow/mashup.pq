@@ -42,7 +42,7 @@ shared Pace_Segment = let
         #"_actual" = "", #"_on_books" = "", #"_total" = "", #"booked_" = "", #"_n/a" = "",
         #"_this_year" = "", #"_last_year" = "_py", #"day_of_week" = "dow", #"occupancy_date" = "stay_date", #"comparison_date" = "stay_date",
         #"room_revenue" = "rev", #"occupancy" = "rms", #"revenue" = "rev", #"rooms_sold" = "rms", #"rms_rev" = "rev",
-        #"my_forecast" = "projected_fct", #"user_forecast" = "projected_fct", #"user_projected" = "projected_fct", #"user" = "projected", 
+        #"my_forecast" = "projected", #"user_forecast" = "projected", #"property_forecast" = "projected", #"user_projected" = "projected", #"user" = "projected", 
         #"budget" = "bgt", #"forecast" = "fct", #"forecasted" = "fct",
         #"cancelled" = "cx", #"system" = "sys", #"out_of_order" = "ooo", #"%" = "pct",           
         #"transient" = "trn", #"group" = "grp",  #"property_constrained" = "constrained",  #"property_unconstrained" = "unconstrained",  #"property_demand" = "demand", 
@@ -140,48 +140,60 @@ shared Pace_Segment = let
     MapSegmentExists = try Table.RowCount(TrimmedMapSegment) > 0 otherwise false,
     //
     // 🔗 Merge segment mapping
-    MergedSegmentCodes = if MapSegmentExists then 
+    MergedSegmentData = if MapSegmentExists then 
         Table.NestedJoin(TrimmedData, {"segment"}, TrimmedMapSegment, {"segment"}, "map_segment", JoinKind.LeftOuter) else TrimmedData,
     //
-    ExpandedSegmentCodes = if MapSegmentExists then 
-        Table.ExpandTableColumn(
-            MergedSegmentCodes, "map_segment", 
-            {"segment_code", "segment_sort", "segment_group", "segment_group_code", "finance_segment"}) 
-        else MergedSegmentCodes,
+    SafeTypedSegmentData = Table.TransformColumns(
+        MergedSegmentData,
+        {
+            {"segment_code", type text},  
+            {"segment_sort", each try Int64.From(_) otherwise 0, Int64.Type},
+            {"segment_group", type text},
+            {"segment_group_code", type text},
+            {"finance_segment", type text}
+        }),
     //
-    WithTypedSegmentColumns = if MapSegmentExists then
+    ExpandedSegmentData =
+    if MapPropertyExists then
         Table.TransformColumnTypes(
-            ExpandedSegmentCodes,
-            {
-                {"segment_code", type text},               
-                {"segment_sort", Int64.Type},
-                {"segment_group", type text},
-                {"segment_group_code", type text},
-                {"finance_segment", type text}
-            }
-        )
-    else ExpandedSegmentCodes,
+            Table.ExpandTableColumn(
+                MergedSegmentData, "map_segment", {"segment_code", "segment_group", "segment_group_code","finance_segment", "segment_sort"}
+            ),
+            {{"segment_sort", Int64.Type}})
+    else SafeTypedSegmentData,
     //
-    FinalOutputMergedSegmentCodes = ExpandedSegmentCodes,
+    FinalOutputMergedSegmentData = ExpandedSegmentData,
     //
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
     // ✅ Add Property Data to Table from map_property Google Sheet
     // 
-    MapPropertyDataExists = try Table.RowCount(SafeMapProperty) > 0 otherwise false,
+    MapPropertyExists = try Table.RowCount(SafeMapProperty) > 0 otherwise false,
     //
-    MergedPropertyData = if MapPropertyDataExists then 
-        Table.NestedJoin(
-            FinalOutputMergedSegmentCodes, {"property_code"}, SafeMapProperty, {"property_code_key"}, "map_property",  JoinKind.LeftOuter ) 
-            else  FinalOutputMergedDemandData,
+    MergedPropertyData =
+        if MapPropertyExists then
+            Table.NestedJoin(
+                FinalOutputMergedSegmentData, {"property_code"}, SafeMapProperty, {"property_code_key"}, "map_property", JoinKind.LeftOuter)
+        else FinalOutputMergedSegmentCodes,
     //
-    ExpandedPropertyData = if MapPropertyDataExists then 
-        Table.ExpandTableColumn(
-            MergedPropertyData, "map_property", {"property_name", "physical_capacity", "property_shortname"}) 
-            else FinalOutputMergedDemandData,
+    SafeTypedPropertyData = Table.TransformColumns(
+        MergedPropertyData,
+        {
+            {"property_code", type text},
+            {"property_shortname",  type text},
+            {"physical_capacity", each try Int64.From(_) otherwise null, Int64.Type}
+        }),
     //
-    TypedPropertyCodes = Table.TransformColumns( ExpandedPropertyData, {{"physical_capacity", each try Int64.From(_) otherwise 0, Int64.Type}}),
+    ExpandedPropertyData =
+        if MapPropertyExists then
+            Table.TransformColumnTypes(
+                Table.ExpandTableColumn(
+                    MergedPropertyData, "map_property", {"property_name", "physical_capacity", "property_shortname"}
+                ),
+                {{"physical_capacity", Int64.Type}}
+            )
+        else SafeTypedPropertyData,
     //
-    FinalOutputMergedPropertyData = TypedPropertyCodes,
+    FinalOutputMergedPropertyData = ExpandedPropertyData,
     //
     // MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
     //
